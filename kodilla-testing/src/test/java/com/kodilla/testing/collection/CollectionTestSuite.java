@@ -2,10 +2,8 @@ package com.kodilla.testing.collection;
 
 import org.junit.*;
 import org.junit.Assert;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Random;
+
+import java.util.*;
 
 public class CollectionTestSuite {
 private   OddNumbersExterminator oddNumbersExterminator;
@@ -22,44 +20,41 @@ private   OddNumbersExterminator oddNumbersExterminator;
 
     @Test
     public void testOddNumbersExterminatorEmptyList (){
-
-        ArrayList<Integer> lista = new ArrayList<>();
-        //oddNumbersExterminator.exterminate(lista);
+        //given
+        ArrayList<Integer> input = new ArrayList<>();
         System.out.println("Testing empty list");
-
-        //lepiej sprawdzić coś bardziej sensownego, czy nie jest nullem, i czy jest pusta, itp
-        Assert.assertTrue(oddNumbersExterminator.exterminate(lista).size()==0 && oddNumbersExterminator.exterminate(lista)!=null);
-
-
+        //when
+        List<Integer> output = oddNumbersExterminator.exterminate(input);
+        //then
+        Assert.assertEquals("List not empty",0,output.size());
     }
 
+    //Trzymaj się konwencji given-when-then!!!
     @Test
     public void testOddNumbersExterminatorNormalList () {
-
-        ArrayList<Integer> lista = new ArrayList<>();
-        ArrayList<Integer> listaEven = new ArrayList<>();
-        Random rand = new Random();
-        for (int i=0; i<100; i++) {
-            //rand to nie jest dobry pomysł
-
-            // zmodyfikowałem sposób generowania liczb do list. 50 liczb jest parzysta, 50 nieparzysta
-            if (i % 2 == 0) {
-                lista.add(((rand.nextInt(20) + 1) * 2) + 1);
-            }
-            else
-            {
-                lista.add((rand.nextInt(20) + 1) * 2);
-                listaEven.add(lista.get(i));
-            }
-        }
-
+        // dane to testcasów powinny takie same za każdym razem
+        //given
+        List<Integer> input= new ArrayList<>(Arrays.asList(1,2,3,4,5,6,7,8,9,10));
+        List<Integer> assertArray= Arrays.asList(2,4,6,8,10);
+//        ArrayList<Integer> lista = new ArrayList<>();
+//        ArrayList<Integer> listaEven = new ArrayList<>();
+//        Random rand = new Random();                            //cześć z generowaniem losowych danych jest złym pomysłem
+//        for (int i=0; i<10; i++) {
+//            if (i % 2 == 0) {
+//                lista.add(((rand.nextInt(20) + 1) * 2) + 1);
+//            }
+//            else
+//            {
+//                lista.add((rand.nextInt(20) + 1) * 2);
+//                listaEven.add(lista.get(i));
+//            }
+//        }
+        //when
+        List<Integer> output=oddNumbersExterminator.exterminate(input);
         System.out.println("Testing filled list");
 
-        //Po co sprawdzasz jakiego jest typu skoro to jest ustawione w definicji metody?
-        //Skoro to test pozytywnego przyapdku to powinieneś sprawdzać czy zostały usunięte odpowiedznie liczby,
-        //tzn stworzyć kolekcje z usuniętymi i porównać z tym co zwróci metoda
-        //Assert.assertTrue(oddNumbersExterminator.exterminate(lista) instanceof List);
-        Assert.assertEquals(listaEven,oddNumbersExterminator.exterminate(lista));
+        //then
+        Assert.assertTrue(assertArray.equals(output));
 
 
     }
@@ -68,10 +63,11 @@ private   OddNumbersExterminator oddNumbersExterminator;
     //i dokończ assercje
     @Test
     public void testNull() throws Exception {
-        oddNumbersExterminator.exterminate(null);
+       //pamietaj o given-when-then
 
         System.out.println("Testing null as list");
-        //Assert.assertEquals(null,oddNumbersExterminator.exterminate(null));
-        Assert.assertNull(oddNumbersExterminator.exterminate(null));
+        //metoda nie powinna zwracać nulla tylko pustą kolekcje keidy otrzyma obiekt który ma w sobie nulla
+        Assert.assertNotNull(oddNumbersExterminator.exterminate(null));
+
     }
 }
