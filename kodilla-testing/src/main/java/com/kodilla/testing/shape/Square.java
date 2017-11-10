@@ -17,7 +17,7 @@ public class Square implements Shape {
     @Override
     public double getField() {
 
-        if (this.sideA!=null && this.sideA>0){
+        if (this.sideA>0){
             return Math.pow(this.sideA,2);
         }
         else {

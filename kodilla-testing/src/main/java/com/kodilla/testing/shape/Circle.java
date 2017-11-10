@@ -16,7 +16,7 @@ public class Circle implements Shape {
     @Override
     public double getField() {
 
-        if (this.r!=null && this.r>0) {
+        if (this.r>0) {
             return 2*3.14*this.r;
         }
         else {

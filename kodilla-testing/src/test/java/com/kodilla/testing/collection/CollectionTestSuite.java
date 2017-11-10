@@ -65,9 +65,20 @@ private   OddNumbersExterminator oddNumbersExterminator;
     public void testNull() throws Exception {
        //pamietaj o given-when-then
 
+        //given
+        List<Integer> input = new ArrayList<>();
+
+        //when
+        List<Integer> output = oddNumbersExterminator.exterminate(null);
         System.out.println("Testing null as list");
+
+
+
         //metoda nie powinna zwracać nulla tylko pustą kolekcje keidy otrzyma obiekt który ma w sobie nulla
-        Assert.assertNotNull(oddNumbersExterminator.exterminate(null));
+        //Assert.assertNotNull(oddNumbersExterminator.exterminate(null));
+        //then
+        Assert.assertEquals(input,output);
+
 
     }
 }

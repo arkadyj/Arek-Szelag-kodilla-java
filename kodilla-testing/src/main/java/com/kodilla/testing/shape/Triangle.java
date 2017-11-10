@@ -20,9 +20,9 @@ public class Triangle implements Shape {
     }
 
     @Override
-    public void getField() {
+    public double getField() {
 
-        if (this.sideA!=null && this.sideA>0 && this.height!=null && this.height>0) {
+        if (this.sideA>0 && this.height>0) {
             return 0.5*this.sideA*this.height;
         }
         else {
