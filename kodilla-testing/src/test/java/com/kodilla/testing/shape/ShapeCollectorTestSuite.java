@@ -47,12 +47,13 @@ public class ShapeCollectorTestSuite {
 
         //when
 
-        ArrayList <Shape> tempList = new ArrayList<>(shapeCollector.getShapeList());
+        ArrayList <Shape> tempList = shapeCollector.getShapeList();//zbędne
         boolean result = shapeCollector.addFigure(null);
 
         //Then
-        Assert.assertTrue(result);
-        Assert.assertEquals(tempList,shapeCollector.getShapeList());
+        Assert.assertTrue(result);//to raczej nie ma sensu? null nie powinien się dodawać, ani tymbardziej z sukcesem
+        Assert.assertEquals(tempList,shapeCollector.getShapeList());// tak jak pokazałem w porzednim ćwiczeniu assertEquals nie działa dobrze dla list
+        //dodawanie nulla nie powinno powiększąc rozmiaru tablicy , czyli powinna byc rozmiaru 0, wiec taką stwórz assercje
     }
 
     @Test
@@ -65,6 +66,8 @@ public class ShapeCollectorTestSuite {
         boolean result = shapeCollector.removeFigure(null);
 
         //Then
+
+        // sam test ma sens, ale asercje nie mają
         Assert.assertTrue(result);
         Assert.assertEquals(tempList,shapeCollector.getShapeList());
     }
@@ -91,6 +94,7 @@ public class ShapeCollectorTestSuite {
 
         //when
 
+        //chyba raczej powinien zwrócić nulla
         boolean result = shapeCollector.getFigure(0);
 
 
@@ -111,5 +115,15 @@ public class ShapeCollectorTestSuite {
         //Then
         Assert.assertTrue(result);
         Assert.assertEquals(tempList,shapeCollector.getShapeList());
+    }
+
+    @Test
+    public void testShowAllFigures() throws Exception {
+        //implementacja
+    }
+
+    @Test
+    public void testGetFigureOutOfRange() throws Exception {
+        //implementacja
     }
 }
