@@ -130,7 +130,7 @@ public class ShapeCollectorTestSuite {
         int numberPrintedFigures = shapeCollector.showFigures();
 
         //Then
-        Assert.assertEquals(shapeCollector.getFiguresNumber(),numberPrintedFigures);
+        Assert.assertEquals(g2,numberPrintedFigures);
 
 
     }
