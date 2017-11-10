@@ -2,9 +2,13 @@ package com.kodilla.testing.shape;
 
 public class Square implements Shape {
 
-    private int sideA;
+    private double sideA;
 
-    public int getSideA() {
+    public Square (double sideA) {
+        this.sideA=sideA;
+    }
+
+    public double getSideA() {
         return sideA;
     }
 
@@ -32,11 +36,12 @@ public class Square implements Shape {
 
         Square square = (Square) o;
 
-        return sideA == square.sideA;
+        return Double.compare(square.sideA, sideA) == 0;
     }
 
     @Override
     public int hashCode() {
-        return sideA;
+        long temp = Double.doubleToLongBits(sideA);
+        return (int) (temp ^ (temp >>> 32));
     }
 }

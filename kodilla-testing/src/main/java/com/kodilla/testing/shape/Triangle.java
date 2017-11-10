@@ -2,15 +2,19 @@ package com.kodilla.testing.shape;
 
 public class Triangle implements Shape {
 
-    private int sideA;
-    private int height;
+    private double sideA;
+    private double height;
 
+    public Triangle(double sideA, double height) {
+        this.sideA = sideA;
+        this.height = height;
+    }
 
-    public int getSideA() {
+    public double getSideA() {
         return sideA;
     }
 
-    public int getHeight() {
+    public double getHeight() {
         return height;
     }
 
@@ -37,14 +41,18 @@ public class Triangle implements Shape {
 
         Triangle triangle = (Triangle) o;
 
-        if (sideA != triangle.sideA) return false;
-        return height == triangle.height;
+        if (Double.compare(triangle.sideA, sideA) != 0) return false;
+        return Double.compare(triangle.height, height) == 0;
     }
 
     @Override
     public int hashCode() {
-        int result = sideA;
-        result = 31 * result + height;
+        int result;
+        long temp;
+        temp = Double.doubleToLongBits(sideA);
+        result = (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(height);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
     }
 }

@@ -2,10 +2,18 @@ package com.kodilla.testing.shape;
 
 public class Circle implements Shape {
 
-    private int r;
+    private double r;
 
-    public int getR() {
+    public double getR() {
         return r;
+    }
+
+    public Circle( double r) {
+        this.r=r;
+    }
+
+    public Circle(){
+
     }
 
     @Override
@@ -31,11 +39,12 @@ public class Circle implements Shape {
 
         Circle circle = (Circle) o;
 
-        return r == circle.r;
+        return Double.compare(circle.r, r) == 0;
     }
 
     @Override
     public int hashCode() {
-        return r;
+        long temp = Double.doubleToLongBits(r);
+        return (int) (temp ^ (temp >>> 32));
     }
 }

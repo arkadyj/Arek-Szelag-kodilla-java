@@ -41,6 +41,7 @@ private   OddNumbersExterminator oddNumbersExterminator;
 //        Random rand = new Random();                            //cześć z generowaniem losowych danych jest złym pomysłem
 //        for (int i=0; i<10; i++) {
 //            if (i % 2 == 0) {
+
 //                lista.add(((rand.nextInt(20) + 1) * 2) + 1);
 //            }
 //            else
