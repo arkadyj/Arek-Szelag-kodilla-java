@@ -11,6 +11,9 @@ public class ShapeCollector {
         this.shape=shape;
     }
 
+    //to naprawde byłoby czytleniejsze gdybyś zaimplementował i używał metode
+    //public Integer getFiguresNumber() zwracającą ilośc elemtów
+    //zamień wszystkie wywołania getShapeList().size() na tą metodę
     public ArrayList<Shape> getShapeList() {
         return shapeList;
     }
