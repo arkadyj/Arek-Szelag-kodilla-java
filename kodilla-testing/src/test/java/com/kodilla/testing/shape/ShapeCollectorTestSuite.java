@@ -48,9 +48,10 @@ public class ShapeCollectorTestSuite {
         //when
 
         ArrayList <Shape> tempList = new ArrayList<>(shapeCollector.getShapeList());
-        shapeCollector.addFigure(null);
+        boolean result = shapeCollector.addFigure(null);
 
         //Then
+        Assert.assertTrue(result);
         Assert.assertEquals(tempList,shapeCollector.getShapeList());
     }
 
@@ -61,9 +62,10 @@ public class ShapeCollectorTestSuite {
 
         //when
         ArrayList <Shape> tempList = new ArrayList<>(shapeCollector.getShapeList());
-        shapeCollector.removeFigure(null);
+        boolean result = shapeCollector.removeFigure(null);
 
         //Then
+        Assert.assertTrue(result);
         Assert.assertEquals(tempList,shapeCollector.getShapeList());
     }
 
@@ -88,12 +90,12 @@ public class ShapeCollectorTestSuite {
         ShapeCollector shapeCollector = new ShapeCollector();
 
         //when
-        Shape shape = new Circle();
-        Shape shapeOut = shapeCollector.getFigure(0);
+
+        boolean result = shapeCollector.getFigure(0);
 
 
         //Then
-        Assert.assertEquals(shape,shapeOut);
+        Assert.assertTrue(result);
     }
 
     @Test
@@ -104,9 +106,10 @@ public class ShapeCollectorTestSuite {
         //when
         ArrayList <Shape> tempList = new ArrayList<>(shapeCollector.getShapeList());
         //Shape triangle = new Triangle(4.5,2);
-        shapeCollector.removeFigure(new Triangle(4.5,2));
+        boolean result = shapeCollector.removeFigure(new Triangle(4.5,2));
 
         //Then
+        Assert.assertTrue(result);
         Assert.assertEquals(tempList,shapeCollector.getShapeList());
     }
 }

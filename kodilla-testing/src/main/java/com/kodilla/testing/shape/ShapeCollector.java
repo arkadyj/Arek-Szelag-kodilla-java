@@ -26,13 +26,17 @@ public class ShapeCollector {
 
     }
 
-    public void addFigure (Shape shape) {
+    public boolean addFigure (Shape shape) {
+
+        return true;
 
 
 
     }
 
-    public void removeFigure(Shape shape) {
+    public boolean removeFigure(Shape shape) {
+
+        return true;
 
 
 
