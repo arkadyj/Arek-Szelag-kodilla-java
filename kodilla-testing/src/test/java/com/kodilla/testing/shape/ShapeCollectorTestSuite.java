@@ -1,12 +1,16 @@
 package com.kodilla.testing.shape;
 
-import org.junit.*;
-
-import java.util.ArrayList;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
 public class ShapeCollectorTestSuite {
-    static private int testCounter=0;
-
+    static private int testCounter = 0;
+    //ShapeCollector powinien być na poziomie klasy a nie metody, tak jak pokazałem Ci w porzednim ćwiczeniu.
+    //duplikacja kodu jest bezsensu
+    //Usuwaj prosze duplikacje nowej liniii(entery).
+    //Automatyczne formatowanie kodu w Intellij, ctrl-alt-l
+    //uzywaj przed commitem
     @Before
     public void beforeEveryTest() {
         testCounter++;
@@ -14,7 +18,7 @@ public class ShapeCollectorTestSuite {
     }
 
     @Test
-    public void testAddFigure(){
+    public void testAddFigure() {
         //given
         ShapeCollector shapeCollector = new ShapeCollector();
 
@@ -23,11 +27,11 @@ public class ShapeCollectorTestSuite {
         shapeCollector.addFigure(circle);
 
         //Then
-        Assert.assertEquals(1,shapeCollector.getFiguresNumber());
+        Assert.assertEquals(1, shapeCollector.getFiguresNumber());
     }
 
     @Test
-    public void testRemoveFigure(){
+    public void testRemoveFigure() {
         //given
         ShapeCollector shapeCollector = new ShapeCollector();
 
@@ -37,39 +41,39 @@ public class ShapeCollectorTestSuite {
         shapeCollector.removeFigure(circle);
 
         //Then
-        Assert.assertEquals(0,shapeCollector.getFiguresNumber());
+        Assert.assertEquals(0, shapeCollector.getFiguresNumber());
     }
 
     @Test
-    public void testAddNull(){
+    public void testAddNull() {
         //given
         ShapeCollector shapeCollector = new ShapeCollector();
 
         //when
-        boolean result = shapeCollector.addFigure(null);
+        boolean result = shapeCollector.addFigure(null);//po co ten result? jak coś jest bez sensu to tego nie używaj
 
         //Then
-        Assert.assertEquals(0,shapeCollector.getFiguresNumber());
+        Assert.assertEquals(0, shapeCollector.getFiguresNumber());
 
     }
 
     @Test
-    public void testRemoveNull(){
+    public void testRemoveNull() {
         //given
         ShapeCollector shapeCollector = new ShapeCollector();
 
         //when
-       boolean result = shapeCollector.removeFigure(null);
+        boolean result = shapeCollector.removeFigure(null);//po co ten result?
 
         //Then
 
         //// zrobiłem taki sam test jak powyżej, próba usunięcia nulla nie powinna zmieniać zawartości listy
-        Assert.assertEquals(0,shapeCollector.getFiguresNumber());
+        Assert.assertEquals(0, shapeCollector.getFiguresNumber());
 
     }
 
     @Test
-    public void testGetFigure(){
+    public void testGetFigure() {
         //given
         ShapeCollector shapeCollector = new ShapeCollector();
 
@@ -80,28 +84,25 @@ public class ShapeCollectorTestSuite {
 
 
         //Then
-        Assert.assertEquals(square,retrivedShape);
+        Assert.assertEquals(square, retrivedShape);
     }
 
     @Test
-    public void testGetFigureNotExists(){
+    public void testGetFigureNotExists() {
         //given
         ShapeCollector shapeCollector = new ShapeCollector();
 
         //when
-
-        ////zmieniłem test - jeżeli chcemy zwrócić figurę, które nie istnieje metoda powinna zwrócić sam obiekt shape
-        //// nie jestem pewien czy taka inicjalizacja jak poniżej zadziała.
-        Shape shape = new Circle();
+        // napisałem Ci wcześniej że jak nie posiada takeigo obiektu to pownienien zwrócić nulla
+        //nie rozumiem co ty chcesz osiągnąć
         Shape retrivedShape = shapeCollector.getFigure(0);
 
-
         //Then
-        Assert.assertEquals(shape,retrivedShape );
+        Assert.assertNull(retrivedShape);
     }
 
     @Test
-    public void testRemoveNotExists(){
+    public void testRemoveNotExists() {
         //given
         ShapeCollector shapeCollector = new ShapeCollector();
 
@@ -109,7 +110,7 @@ public class ShapeCollectorTestSuite {
         ////po usunięciu metody getShapeList musiałem również zmodyfikować ten test
         //// po próbie usunięcia figury, której nie ma, metoda zwróci false.
         //when
-        boolean result = shapeCollector.removeFigure(new Triangle(4.5,2));
+        boolean result = shapeCollector.removeFigure(new Triangle(4.5, 2));
 
         //Then
         Assert.assertFalse(result);
@@ -118,8 +119,8 @@ public class ShapeCollectorTestSuite {
 
     @Test
     public void testShowAllFigures() throws Exception {
-        //// test wyświetlający wszystkie figury  jest poprawny, gdy wyświetli wszystkie figury.
-        ////Dlatego zmienię implementację showFigures(), tak aby zwracała ilość wyświetlonych figur i następnie porównam ją z ilością figur w liście.
+       // showFigures moze niech wypisze nazwy figur i ich pola do String? bo widze ze teraz ta metoda robi to samo co getFiguresNumber
+
 
         //given
         ShapeCollector shapeCollector = new ShapeCollector();
@@ -130,23 +131,22 @@ public class ShapeCollectorTestSuite {
         int numberPrintedFigures = shapeCollector.showFigures();
 
         //Then
-        Assert.assertEquals(2,numberPrintedFigures);
+        Assert.assertEquals(2, numberPrintedFigures);
 
     }
 
     @Test
     public void testGetFigureOutOfRange() throws Exception {
-       //// próba zwrotu figury, której nie ma będzie wyglądała podobnie jak próba zwrotu figury której nie ma. Chyba, że źle to rozumiem. Każda próba zwrotu
-        //// figury, której nie ma powinna zwrócić pusty obiekt typu shape.
+        //generalnie standardem jest że powinno zwrócić nulla,
 
         //given
         ShapeCollector shapeCollector = new ShapeCollector();
 
         //when
-        Shape shape = new Circle();
+
         Shape retrivedShape = shapeCollector.getFigure(15);
 
         //Then
-        Assert.assertEquals(shape,retrivedShape );
+        Assert.assertNull(retrivedShape);
     }
 }
