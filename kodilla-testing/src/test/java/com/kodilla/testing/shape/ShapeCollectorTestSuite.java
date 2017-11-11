@@ -6,9 +6,10 @@ import org.junit.Test;
 
 public class ShapeCollectorTestSuite {
     static private int testCounter = 0;
+
     //ShapeCollector powinien być na poziomie klasy a nie metody, tak jak pokazałem Ci w porzednim ćwiczeniu.
     //duplikacja kodu jest bezsensu
-    //Usuwaj prosze duplikacje nowej liniii(entery).
+    //Usuwaj prosze duplikacje nowej linii(entery).
     //Automatyczne formatowanie kodu w Intellij, ctrl-alt-l
     //uzywaj przed commitem
     @Before
@@ -60,15 +61,16 @@ public class ShapeCollectorTestSuite {
     @Test
     public void testRemoveNull() {
         //given
+        //ten test miałby więcej sensu gdy ShapeCollector nie byłby pusty podczas usuwania
         ShapeCollector shapeCollector = new ShapeCollector();
+        shapeCollector.addFigure(new Circle());
 
         //when
+        Assert.assertEquals(1, shapeCollector.getFiguresNumber());
         boolean result = shapeCollector.removeFigure(null);//po co ten result?
 
         //Then
-
-        //// zrobiłem taki sam test jak powyżej, próba usunięcia nulla nie powinna zmieniać zawartości listy
-        Assert.assertEquals(0, shapeCollector.getFiguresNumber());
+        Assert.assertEquals(1, shapeCollector.getFiguresNumber());
 
     }
 
@@ -119,7 +121,7 @@ public class ShapeCollectorTestSuite {
 
     @Test
     public void testShowAllFigures() throws Exception {
-       // showFigures moze niech wypisze nazwy figur i ich pola do String? bo widze ze teraz ta metoda robi to samo co getFiguresNumber
+        // showFigures moze niech wypisze nazwy figur i ich pola do String? bo widze ze teraz ta metoda robi to samo co getFiguresNumber
 
 
         //given
