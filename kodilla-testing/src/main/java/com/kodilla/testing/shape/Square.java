@@ -4,8 +4,8 @@ public class Square implements Shape {
 
     private double sideA;
 
-    public Square (double sideA) {
-        this.sideA=sideA;
+    public Square(double sideA) {
+        this.sideA = sideA;
     }
 
     public double getSideA() {
@@ -13,18 +13,17 @@ public class Square implements Shape {
     }
 
     @Override
-    public void getShapeName() {
-        System.out.println("This is Square");
+    public String getShapeName() {
+        return "Square";
 
     }
 
     @Override
     public double getField() {
 
-        if (this.sideA>0){
-            return Math.pow(this.sideA,2);
-        }
-        else {
+        if (this.sideA > 0) {
+            return Math.pow(this.sideA, 2);
+        } else {
             return 0;
         }
     }

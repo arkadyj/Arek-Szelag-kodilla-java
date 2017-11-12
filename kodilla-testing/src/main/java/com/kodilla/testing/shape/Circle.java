@@ -8,26 +8,25 @@ public class Circle implements Shape {
         return r;
     }
 
-    public Circle( double r) {
-        this.r=r;
+    public Circle(double r) {
+        this.r = r;
     }
 
-    public Circle(){
+    public Circle() {
 
     }
 
     @Override
-    public void getShapeName() {
-        System.out.println("This is Circle");
+    public String getShapeName() {
+        return "Circle";
     }
 
     @Override
     public double getField() {
 
-        if (this.r>0) {
-            return 2*3.14*this.r;
-        }
-        else {
+        if (this.r > 0) {
+            return 2 * 3.14 * this.r;
+        } else {
             return 0;
         }
     }

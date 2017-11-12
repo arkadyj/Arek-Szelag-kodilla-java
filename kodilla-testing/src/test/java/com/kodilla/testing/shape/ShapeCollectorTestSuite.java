@@ -6,25 +6,22 @@ import org.junit.Test;
 
 public class ShapeCollectorTestSuite {
     static private int testCounter = 0;
+    private ShapeCollector shapeCollector;
 
-    //ShapeCollector powinien być na poziomie klasy a nie metody, tak jak pokazałem Ci w porzednim ćwiczeniu.
-    //duplikacja kodu jest bezsensu
-    //Usuwaj prosze duplikacje nowej linii(entery).
-    //Automatyczne formatowanie kodu w Intellij, ctrl-alt-l
-    //uzywaj przed commitem
+    //// Przeniosłem shapeCollector z metody do klasy
     @Before
     public void beforeEveryTest() {
         testCounter++;
         System.out.println("Preparing to execute test #" + testCounter);
+        shapeCollector = new ShapeCollector();
     }
 
     @Test
     public void testAddFigure() {
         //given
-        ShapeCollector shapeCollector = new ShapeCollector();
+        Shape circle = new Circle(2.5);
 
         //when
-        Shape circle = new Circle(2.5);
         shapeCollector.addFigure(circle);
 
         //Then
@@ -34,10 +31,9 @@ public class ShapeCollectorTestSuite {
     @Test
     public void testRemoveFigure() {
         //given
-        ShapeCollector shapeCollector = new ShapeCollector();
+        Shape circle = new Circle(2.5);
 
         //when
-        Shape circle = new Circle(2.5);
         shapeCollector.addFigure(circle);
         shapeCollector.removeFigure(circle);
 
@@ -48,10 +44,10 @@ public class ShapeCollectorTestSuite {
     @Test
     public void testAddNull() {
         //given
-        ShapeCollector shapeCollector = new ShapeCollector();
+
 
         //when
-        boolean result = shapeCollector.addFigure(null);//po co ten result? jak coś jest bez sensu to tego nie używaj
+        shapeCollector.addFigure(null);
 
         //Then
         Assert.assertEquals(0, shapeCollector.getFiguresNumber());
@@ -61,13 +57,10 @@ public class ShapeCollectorTestSuite {
     @Test
     public void testRemoveNull() {
         //given
-        //ten test miałby więcej sensu gdy ShapeCollector nie byłby pusty podczas usuwania
-        ShapeCollector shapeCollector = new ShapeCollector();
-        shapeCollector.addFigure(new Circle());
+        shapeCollector.addFigure(new Circle(3));
 
         //when
-        Assert.assertEquals(1, shapeCollector.getFiguresNumber());
-        boolean result = shapeCollector.removeFigure(null);//po co ten result?
+        shapeCollector.removeFigure(null);
 
         //Then
         Assert.assertEquals(1, shapeCollector.getFiguresNumber());
@@ -92,7 +85,6 @@ public class ShapeCollectorTestSuite {
     @Test
     public void testGetFigureNotExists() {
         //given
-        ShapeCollector shapeCollector = new ShapeCollector();
 
         //when
         // napisałem Ci wcześniej że jak nie posiada takeigo obiektu to pownienien zwrócić nulla
@@ -106,11 +98,8 @@ public class ShapeCollectorTestSuite {
     @Test
     public void testRemoveNotExists() {
         //given
-        ShapeCollector shapeCollector = new ShapeCollector();
 
 
-        ////po usunięciu metody getShapeList musiałem również zmodyfikować ten test
-        //// po próbie usunięcia figury, której nie ma, metoda zwróci false.
         //when
         boolean result = shapeCollector.removeFigure(new Triangle(4.5, 2));
 
@@ -121,31 +110,27 @@ public class ShapeCollectorTestSuite {
 
     @Test
     public void testShowAllFigures() throws Exception {
-        // showFigures moze niech wypisze nazwy figur i ich pola do String? bo widze ze teraz ta metoda robi to samo co getFiguresNumber
-
 
         //given
-        ShapeCollector shapeCollector = new ShapeCollector();
         shapeCollector.addFigure(new Square(4));
         shapeCollector.addFigure(new Circle(7.2));
+        String figuresName = "SquareCircle";
 
         //when
-        int numberPrintedFigures = shapeCollector.showFigures();
+        String figuresToString = shapeCollector.showFigures();
 
         //Then
-        Assert.assertEquals(2, numberPrintedFigures);
+        Assert.assertEquals(figuresName, figuresToString);
 
     }
 
     @Test
     public void testGetFigureOutOfRange() throws Exception {
-        //generalnie standardem jest że powinno zwrócić nulla,
 
         //given
-        ShapeCollector shapeCollector = new ShapeCollector();
+
 
         //when
-
         Shape retrivedShape = shapeCollector.getFigure(15);
 
         //Then

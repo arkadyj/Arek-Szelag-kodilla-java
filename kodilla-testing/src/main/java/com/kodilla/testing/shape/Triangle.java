@@ -19,8 +19,8 @@ public class Triangle implements Shape {
     }
 
     @Override
-    public void getShapeName() {
-        System.out.println("This is triangle");
+    public String getShapeName() {
+        return "Triangle";
     }
 
     @Override
