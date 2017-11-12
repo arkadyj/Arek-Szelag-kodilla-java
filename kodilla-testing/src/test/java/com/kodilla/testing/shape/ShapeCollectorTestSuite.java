@@ -87,8 +87,6 @@ public class ShapeCollectorTestSuite {
         //given
 
         //when
-        // napisałem Ci wcześniej że jak nie posiada takeigo obiektu to pownienien zwrócić nulla
-        //nie rozumiem co ty chcesz osiągnąć
         Shape retrivedShape = shapeCollector.getFigure(0);
 
         //Then
