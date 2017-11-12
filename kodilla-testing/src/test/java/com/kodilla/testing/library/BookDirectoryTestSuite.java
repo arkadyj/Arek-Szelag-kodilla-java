@@ -89,6 +89,7 @@ public class BookDirectoryTestSuite {
         //When
         List<Book> theListOfBooks = bookLibrary.listBooksInHandsOf(libraryUser);
 
+        //then
         assertEquals(0, theListOfBooks.size());
 
 
@@ -126,6 +127,7 @@ public class BookDirectoryTestSuite {
         //when
         List<Book> theListOfBooks = bookLibrary.listBooksInHandsOf(libraryUser);
 
+        //then
         assertEquals(5, theListOfBooks.size());
 
 
