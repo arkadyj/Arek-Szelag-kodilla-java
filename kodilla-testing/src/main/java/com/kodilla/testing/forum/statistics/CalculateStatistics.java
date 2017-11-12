@@ -39,26 +39,24 @@ public class CalculateStatistics {
         return avgCommentsPerPost;
     }
 
-    public void calculateAdvStatistics(Statistics statistics){
-        this.userNumber=statistics.usersNames().size();
-        this.postNumber=statistics.postsCount();
-        this.commentNumber=statistics.commentsCount();
+    public void calculateAdvStatistics(Statistics statistics) {
+        this.userNumber = statistics.usersNames().size();
+        this.postNumber = statistics.postsCount();
+        this.commentNumber = statistics.commentsCount();
 
-        if (statistics.usersNames()!=null && statistics.usersNames().size()>0) {
+        if (statistics.usersNames() != null && statistics.usersNames().size() > 0) {
             this.avgPostPerUser = (double) statistics.postsCount() / statistics.usersNames().size();
-            this.avgCommentsPerUser = (double )statistics.commentsCount() / statistics.usersNames().size();
-        }
-        else {
+            this.avgCommentsPerUser = (double) statistics.commentsCount() / statistics.usersNames().size();
+        } else {
             this.avgPostPerUser = 0;
-            this.avgCommentsPerUser =0;
+            this.avgCommentsPerUser = 0;
         }
 
-        if (statistics.postsCount()>0) {
+        if (statistics.postsCount() > 0) {
             this.avgCommentsPerPost = (double) statistics.commentsCount() / statistics.postsCount();
-        }
-        else {
+        } else {
             this.avgCommentsPerPost = 0;
-       }
+        }
 
 
     }

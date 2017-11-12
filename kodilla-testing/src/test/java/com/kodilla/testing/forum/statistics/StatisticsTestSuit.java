@@ -8,15 +8,16 @@ import java.util.ArrayList;
 import static org.mockito.Mockito.*;
 
 public class StatisticsTestSuit {
+    private Statistics statisticsMoc = mock(Statistics.class);
 
     @Test
     public void testPostCount0() {
 
         //Given
-        Statistics statisticsMoc = mock(Statistics.class);
-        int testPostsCount=0;
+
+        int testPostsCount = 0;
         ArrayList<String> users = new ArrayList<>();
-        int testCommentsCount=5;
+        int testCommentsCount = 5;
 
         when(statisticsMoc.postsCount()).thenReturn(testPostsCount);
         when(statisticsMoc.usersNames()).thenReturn(users);
@@ -30,8 +31,8 @@ public class StatisticsTestSuit {
         double commentsPerPost = calculateStatistics.getAvgCommentsPerPost();
 
         //Then
-        Assert.assertEquals(0,postPerUser,0.0);
-        Assert.assertEquals(0,commentsPerPost,0.0);
+        Assert.assertEquals(0, postPerUser, 0.0);
+        Assert.assertEquals(0, commentsPerPost, 0.0);
 
 
     }
@@ -40,12 +41,11 @@ public class StatisticsTestSuit {
     public void testPostCount1000() {
 
         //Given
-        Statistics statisticsMoc = mock(Statistics.class);
-        int testPostsCount=1000;
+        int testPostsCount = 1000;
         ArrayList<String> users = new ArrayList<>();
         users.add("Zbyszek");
         users.add("Roman");
-        int testCommentsCount=5;
+        int testCommentsCount = 5;
 
         when(statisticsMoc.postsCount()).thenReturn(testPostsCount);
         when(statisticsMoc.usersNames()).thenReturn(users);
@@ -60,8 +60,8 @@ public class StatisticsTestSuit {
 
         //Then
 
-        Assert.assertEquals(500,postPerUser,0.0);
-        Assert.assertEquals(0.005,commentsPerPost,0.0);
+        Assert.assertEquals(500, postPerUser, 0.0);
+        Assert.assertEquals(0.005, commentsPerPost, 0.0);
 
     }
 
@@ -70,10 +70,9 @@ public class StatisticsTestSuit {
     public void testUserCount0() {
 
         //Given
-        Statistics statisticsMoc = mock(Statistics.class);
         ArrayList<String> users = new ArrayList<>();
-        int testPostsCount=1000;
-        int testCommentsCount=5;
+        int testPostsCount = 1000;
+        int testCommentsCount = 5;
 
         when(statisticsMoc.postsCount()).thenReturn(testPostsCount);
         when(statisticsMoc.usersNames()).thenReturn(users);
@@ -86,23 +85,23 @@ public class StatisticsTestSuit {
         double commentsPerUser = calculateStatistics.getAvgCommentsPerUser();
 
         //Then
-        Assert.assertEquals(0,postPerUser,0.0);
-        Assert.assertEquals(0,commentsPerUser,0.0);
+        Assert.assertEquals(0, postPerUser, 0.0);
+        Assert.assertEquals(0, commentsPerUser, 0.0);
 
     }
 
     @Test
     public void testPostCount100() {
 
-        Statistics statisticsMoc = mock(Statistics.class);
+        //Given
         ArrayList<String> users = new ArrayList<>();
-        for (int i=0;i<100;i++){
-            String userAdd = "User"+i;
+        for (int i = 0; i < 100; i++) {
+            String userAdd = "User" + i;
             users.add(userAdd);
         }
 
-        int testPostsCount=1000;
-        int testCommentsCount=5;
+        int testPostsCount = 1000;
+        int testCommentsCount = 5;
 
         when(statisticsMoc.postsCount()).thenReturn(testPostsCount);
         when(statisticsMoc.usersNames()).thenReturn(users);
@@ -115,17 +114,16 @@ public class StatisticsTestSuit {
         double commentsPerUser = calculateStatistics.getAvgCommentsPerUser();
 
         //Then
-        Assert.assertEquals(10,postPerUser,0.0);
-        Assert.assertEquals(0.05,commentsPerUser,0.0);
+        Assert.assertEquals(10, postPerUser, 0.0);
+        Assert.assertEquals(0.05, commentsPerUser, 0.0);
     }
 
     @Test
     public void testCommentsCount0() {
 
         //Given
-        Statistics statisticsMoc = mock(Statistics.class);
-        int commentsCount=0;
-        int testPostsCount=0;
+        int commentsCount = 0;
+        int testPostsCount = 0;
         ArrayList<String> users = new ArrayList<>();
         users.add("Zbyszek");
         users.add("Roman");
@@ -142,25 +140,23 @@ public class StatisticsTestSuit {
 
 
         //Then
-        Assert.assertEquals(0,commentsPerUser,0.0);
-        Assert.assertEquals(0,commentsPerPost,0.0);
+        Assert.assertEquals(0, commentsPerUser, 0.0);
+        Assert.assertEquals(0, commentsPerPost, 0.0);
 
     }
-
 
 
     @Test
     public void testNumbCommentsGreaterThanPosts() {
 
         //Given
-        Statistics statisticsMoc = mock(Statistics.class);
         ArrayList<String> users = new ArrayList<>();
-        for (int i=0;i<5;i++){
-            String userAdd = "User"+i;
+        for (int i = 0; i < 5; i++) {
+            String userAdd = "User" + i;
             users.add(userAdd);
         }
-        int commentsCount=450;
-        int testPostsCount=50;
+        int commentsCount = 450;
+        int testPostsCount = 50;
 
 
         when(statisticsMoc.commentsCount()).thenReturn(commentsCount);
@@ -175,9 +171,9 @@ public class StatisticsTestSuit {
         double postPerUser = calculateStatistics.getAvgPostPerUser();
 
         //Then
-        Assert.assertEquals(90,commentsPerUser,0.0);
-        Assert.assertEquals(9,commentsPerPost,0.0);
-        Assert.assertEquals(10,postPerUser,0.0);
+        Assert.assertEquals(90, commentsPerUser, 0.0);
+        Assert.assertEquals(9, commentsPerPost, 0.0);
+        Assert.assertEquals(10, postPerUser, 0.0);
 
     }
 
@@ -185,13 +181,12 @@ public class StatisticsTestSuit {
     public void testNumbCommentsLesserThanPosts() {
 
         //Given
-        Statistics statisticsMoc = mock(Statistics.class);
         ArrayList<String> users = new ArrayList<>();
-        for (int i=0;i<5;i++){
+        for (int i = 0; i < 5; i++) {
             users.add("User nr " + i);
         }
-        int testCommentsCount=100;
-        int testPostsCount=400;
+        int testCommentsCount = 100;
+        int testPostsCount = 400;
 
 
         when(statisticsMoc.commentsCount()).thenReturn(testCommentsCount);
@@ -206,9 +201,9 @@ public class StatisticsTestSuit {
         double postPerUser = calculateStatistics.getAvgPostPerUser();
 
         //Then
-        Assert.assertEquals(20,commentsPerUser,0.0);
-        Assert.assertEquals(0.25,commentsPerPost,0.0);
-        Assert.assertEquals(80,postPerUser,0.0);
+        Assert.assertEquals(20, commentsPerUser, 0.0);
+        Assert.assertEquals(0.25, commentsPerPost, 0.0);
+        Assert.assertEquals(80, postPerUser, 0.0);
 
     }
 }
