@@ -10,7 +10,7 @@ public final class ForumUser {
     private final LocalDate birthDate;
     private final int postCount;
 
-    public ForumUser(int userID, String userName, char sex, int yearOfBirth, int monthOfBirth, int dayOfBirth, int postCount) {
+    public ForumUser(final int userID,final String userName,final char sex,final int yearOfBirth,final int monthOfBirth,final int dayOfBirth,final int postCount) {
 
         if (yearOfBirth > LocalDate.now().getYear() || yearOfBirth < 1900 || monthOfBirth < 1 || monthOfBirth > 12 || dayOfBirth < 1 || dayOfBirth > 31) {
             this.birthDate = LocalDate.of(1899, 12, 31);
