@@ -1,22 +1,35 @@
 package com.kodilla.stream;
 
-import com.kodilla.stream.beautifier.PoemBeautifier;
-import com.kodilla.stream.book.Book;
-import com.kodilla.stream.book.BookDirectory;
-import com.kodilla.stream.iterate.NumbersGenerator;
-import com.kodilla.stream.lambda.*;
-import com.kodilla.stream.person.People;
-import com.kodilla.stream.reference.FunctionalCalculator;
 
-import java.util.List;
+import com.kodilla.stream.forumuser.Forum;
+import com.kodilla.stream.forumuser.ForumUser;
+
+import java.time.LocalDate;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static java.awt.SystemColor.text;
-import static jdk.nashorn.internal.objects.NativeString.toUpperCase;
+import static java.time.temporal.ChronoUnit.DAYS;
+
 
 public class StreamMain {
     public static void main(String[] args) {
+
+        Forum forum = new Forum();
+        Map<Integer, ForumUser> par = forum.getList().stream()
+                .filter(forumUser -> forumUser.getSex() == 'M' && DAYS.between(forumUser.getBirthDate(), LocalDate.now()) > 7300 && forumUser.getPostCount() >= 1)
+                .collect(Collectors.toMap(ForumUser::getUserID, forumUser -> forumUser));
+
+        par.entrySet().stream()
+                .map(entry -> entry.getKey() + " " + entry.getValue())
+                .forEach(entry -> System.out.println(entry));
+
+
+
+
+
+
+
+       /*
         BookDirectory theBookDirectory = new BookDirectory();
         String theResultStringOfBooks = theBookDirectory.getList().stream()
                 .filter(book -> book.getYearOfPublication() > 2005)
@@ -27,7 +40,7 @@ public class StreamMain {
 
 
 
-
+        */
         /*
         BookDirectory theBookDirectory = new BookDirectory();
 
