@@ -10,7 +10,7 @@ public class ArrayOperationsTestSuite {
     @Test
     public void testGetAverage() {
         //Given
-        int[] tab = new int[]{2, 4, 3, 1};
+        int[] tab = new int[]{1, 4, 2, 3};
 
         //When
         OptionalDouble result = ArrayOperations.getAverage(tab);
