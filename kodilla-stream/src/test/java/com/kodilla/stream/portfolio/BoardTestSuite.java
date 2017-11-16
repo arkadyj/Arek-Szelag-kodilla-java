@@ -152,7 +152,7 @@ public class BoardTestSuite {
                 .flatMap(tl -> tl.getTasks().stream())
                 //.map(localDate -> DAYS.between(localDate.getCreated(),LocalDate.now()))
                  .map(localDate -> DAYS.between(localDate.getCreated(),LocalDate.now()))
-                .mapToInt(l)
+                //.mapToInt(l)
 
                 .collect(toList());
 

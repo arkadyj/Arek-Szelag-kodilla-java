@@ -13,10 +13,10 @@ public class ArrayOperationsTestSuite {
         int[] tab = new int[]{1, 4, 2, 3};
 
         //When
-        OptionalDouble result = ArrayOperations.getAverage(tab);
+        Double result = ArrayOperations.getAverage(tab);
 
         //Then
-        Assert.assertEquals(2.5, result.getAsDouble(), 0.0);
+        Assert.assertEquals(2.5, result, 0.0);
         Assert.assertEquals(4, tab.length);
 
     }

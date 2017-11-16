@@ -6,20 +6,19 @@ import java.util.stream.IntStream;
 
 public interface ArrayOperations {
 
-    static OptionalDouble getAverage(int[] numbers) {
+    static Double getAverage(int[] numbers) {
 
-        if (numbers.length > 0) {
 
-            IntStream.range(0, numbers.length)
-                    .map(n -> numbers[n])
-                    .forEach(System.out::println);
+        IntStream.range(0, numbers.length)
+                .map(n -> numbers[n])
+                .forEach(System.out::println);
 
-            return IntStream.range(0, numbers.length)
-                    .map(n -> numbers[n])
-                    .average();
+        OptionalDouble result = IntStream.range(0, numbers.length)
+                .map(n -> numbers[n])
+                .average();
 
-        } else {
-            return OptionalDouble.of(0.0);
-        }
+        return result.isPresent() ? result.getAsDouble() : 0;
+
+
     }
 }
