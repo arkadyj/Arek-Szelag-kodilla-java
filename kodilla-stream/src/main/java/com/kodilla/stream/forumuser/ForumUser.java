@@ -54,4 +54,5 @@ public final class ForumUser {
                 ", postNumber= " + postCount +
                 '}';
     }
+
 }

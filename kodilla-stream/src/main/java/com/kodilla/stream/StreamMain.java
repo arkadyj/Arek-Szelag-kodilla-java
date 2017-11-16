@@ -17,17 +17,12 @@ public class StreamMain {
         Forum forum = new Forum();
         Map<Integer, ForumUser> par = forum.getList().stream()
                 .filter(forumUser -> forumUser.getSex() == 'M' && DAYS.between(forumUser.getBirthDate(), LocalDate.now()) > 7300 && forumUser.getPostCount() >= 1)
+                //.filter(forumUser -> forumUser.)
                 .collect(Collectors.toMap(ForumUser::getUserID, forumUser -> forumUser));
 
         par.entrySet().stream()
                 .map(entry -> entry.getKey() + " " + entry.getValue())
                 .forEach(entry -> System.out.println(entry));
-
-
-
-
-
-
 
        /*
         BookDirectory theBookDirectory = new BookDirectory();
@@ -92,5 +87,13 @@ public class StreamMain {
                 .filter(s -> s.substring(0, 1).equals("M"))
                 .forEach(s->System.out.println(s));  */
 
+
+
+
     }
+
+
+
+
+
 }

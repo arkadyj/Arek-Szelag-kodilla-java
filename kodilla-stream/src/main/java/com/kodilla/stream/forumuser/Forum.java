@@ -1,7 +1,9 @@
 package com.kodilla.stream.forumuser;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public final class Forum {
 
@@ -18,5 +20,14 @@ public final class Forum {
 
     public List<ForumUser> getList() {
         return new ArrayList<>(forumList);
+    }
+
+    public List<ForumUser> choiceSexList() {
+        return  forumList.stream()
+                .filter(forumUser -> forumUser.getSex()=='M')
+                .collect(Collectors.toList());
+
+
+
     }
 }
