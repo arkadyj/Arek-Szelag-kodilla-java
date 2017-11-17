@@ -1,6 +1,7 @@
 package com.kodilla.stream.portfolio;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import java.time.*;
 import java.util.*;
@@ -9,6 +10,9 @@ import static java.time.temporal.ChronoUnit.*;
 import static java.util.stream.Collectors.toList;
 
 public class BoardTestSuite {
+
+    private  Board project = prepareTestData();
+
     public Board prepareTestData() {
         //users
         User user1 = new User("developer1", "John Smith");
@@ -71,10 +75,48 @@ public class BoardTestSuite {
         return project;
     }
 
+
+    static public void test(){
+        1+1;
+    }
+
+
+
+    public int sumTaskInProgressDays(Board board, List<TaskList> list){
+        /*
+        return board.getTaskLists().stream()
+                .filter(list::contains)
+                .flatMap(tl -> tl.getTasks().stream())
+                .map(localDate -> DAYS.between(localDate.getCreated(),LocalDate.now()))
+                .map(t -> t.intValue())
+                .reduce(0,Integer::sum);
+         */
+
+
+        return board.getTaskLists().stream()
+                .filter(list::contains)
+                .flatMap(tl -> tl.getTasks().stream())
+                .map(localDate -> DAYS.between(localDate.getCreated(),LocalDate.now()))
+                .map(t -> t.intValue())
+                .reduce(0,Integer::);
+    }
+
+    public int countTaskInProgress(Board board, List<TaskList> list){
+        return ((int) board.getTaskLists().stream()
+                .filter(list::contains)
+                .flatMap(tl -> tl.getTasks().stream())
+                .count());
+    }
+
+    @Before
+    public void beforeEveryTest() {
+
+    }
+
     @Test
     public void testAddTaskList() {
         //Given
-        Board project = prepareTestData();
+
         //When
 
         //Then
@@ -84,7 +126,7 @@ public class BoardTestSuite {
     @Test
     public void testAddTaskListFindUsersTasks() {
         //Given
-        Board project = prepareTestData();
+
         //When
         User user = new User("developer1", "John Smith");
         List<Task> tasks = project.getTaskLists().stream()
@@ -100,7 +142,7 @@ public class BoardTestSuite {
     @Test
     public void testAddTaskListFindOutdatedTasks() {
         //Given
-        Board project = prepareTestData();
+
 
         //When
         List<TaskList> undoneTasks = new ArrayList<>();
@@ -120,7 +162,7 @@ public class BoardTestSuite {
     @Test
     public void testAddTaskListFindLongTasks() {
         //Given
-        Board project = prepareTestData();
+
 
         //When
         List<TaskList> inProgressTasks = new ArrayList<>();
@@ -139,14 +181,16 @@ public class BoardTestSuite {
     @Test
     public void testAddTaskListAverageWorkingOnTask() {
         //Given
-        Board project = prepareTestData();
+
 
         //When
         List<TaskList> inProgressTasks = new ArrayList<>();
-        List<Long> temporary = new ArrayList<>();
-        Period intervalPeriod;
         inProgressTasks.add(new TaskList("In progress"));
+        int sumOfDays=sumTaskInProgressDays(project,inProgressTasks);
+        int taskNumb=countTaskInProgress(project,inProgressTasks);
+        double averageTaskDays;
 
+<<<<<<< HEAD
         temporary = project.getTaskLists().stream()
                 .filter(inProgressTasks::contains)
                 .flatMap(tl -> tl.getTasks().stream())
@@ -173,8 +217,20 @@ public class BoardTestSuite {
         //System.out.println(temporary);
 
 
+=======
+        if (taskNumb==0) {
+            averageTaskDays=0;
+        }
+        else {
+            averageTaskDays=sumOfDays/taskNumb;
+        }
+>>>>>>> 3c49d07d6c2f5bef645a64531f74b91caa0eba78
 
         //Then
-        //Assert.assertEquals(20, longTasks);
+        Assert.assertEquals(10, averageTaskDays,0.0);
+        Assert.assertEquals(30, sumOfDays);
+        Assert.assertEquals(3, taskNumb);
     }
+
+
 }
