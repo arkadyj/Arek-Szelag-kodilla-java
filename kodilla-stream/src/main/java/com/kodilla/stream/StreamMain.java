@@ -16,13 +16,14 @@ public class StreamMain {
 
         Forum forum = new Forum();
         Map<Integer, ForumUser> par = forum.getList().stream()
-                .filter(forumUser -> forumUser.getSex() == 'M' && DAYS.between(forumUser.getBirthDate(), LocalDate.now()) > 7300 && forumUser.getPostCount() >= 1)
-                //.filter(forumUser -> forumUser.)
+                .filter(StreamMain::sexCondition)
+                .filter(StreamMain::ageCondition)
+                .filter(StreamMain::postCountCondition)
                 .collect(Collectors.toMap(ForumUser::getUserID, forumUser -> forumUser));
 
         par.entrySet().stream()
                 .map(entry -> entry.getKey() + " " + entry.getValue())
-                .forEach(entry -> System.out.println(entry));
+                .forEach(System.out::println);
 
        /*
         BookDirectory theBookDirectory = new BookDirectory();
@@ -88,12 +89,28 @@ public class StreamMain {
                 .forEach(s->System.out.println(s));  */
 
 
-
-
     }
 
+    static public boolean sexCondition(ForumUser forumUser) {
+        if (forumUser.getSex() == 'M') {
+            return true;
+        }
+        return false;
+    }
 
+    static public boolean ageCondition(ForumUser forumUser) {
+        if (DAYS.between(forumUser.getBirthDate(), LocalDate.now()) > 7300) {
+            return true;
+        }
+        return false;
+    }
 
+    static public boolean postCountCondition(ForumUser forumUser) {
+        if (forumUser.getPostCount() >= 1) {
+            return true;
+        }
+        return false;
+    }
 
 
 }

@@ -10,18 +10,25 @@ public final class ForumUser {
     private final LocalDate birthDate;
     private final int postCount;
 
-    public ForumUser(final int userID,final String userName,final char sex,final int yearOfBirth,final int monthOfBirth,final int dayOfBirth,final int postCount) {
+    public ForumUser(final int userID, final String userName, final char sex, final int yearOfBirth, final int monthOfBirth, final int dayOfBirth, final int postCount) {
 
-        if (yearOfBirth > LocalDate.now().getYear() || yearOfBirth < 1900 || monthOfBirth < 1 || monthOfBirth > 12 || dayOfBirth < 1 || dayOfBirth > 31) {
-            this.birthDate = LocalDate.of(1899, 12, 31);
-        } else {
-            this.birthDate = LocalDate.of(yearOfBirth, monthOfBirth, dayOfBirth);
-        }
 
+        this.birthDate = checkDate(yearOfBirth, monthOfBirth, dayOfBirth);
         this.userID = userID;
         this.userName = userName;
         this.sex = sex;
         this.postCount = postCount;
+    }
+
+    private LocalDate checkDate(int yearOfBirth, int monthOfBirth, int dayOfBirth) {
+
+        LocalDate temp = LocalDate.of(yearOfBirth, monthOfBirth, dayOfBirth);
+
+        if (temp.isBefore(LocalDate.of(1900, 01, 01)) || temp.isAfter(LocalDate.now())) {
+            return LocalDate.of(1899, 12, 31);
+        }
+
+        return temp;
     }
 
     public int getUserID() {

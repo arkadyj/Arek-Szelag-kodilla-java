@@ -21,13 +21,4 @@ public final class Forum {
     public List<ForumUser> getList() {
         return new ArrayList<>(forumList);
     }
-
-    public List<ForumUser> choiceSexList() {
-        return  forumList.stream()
-                .filter(forumUser -> forumUser.getSex()=='M')
-                .collect(Collectors.toList());
-
-
-
-    }
 }
