@@ -3,6 +3,7 @@ package com.kodilla.stream.portfolio;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
 import java.time.*;
 import java.util.*;
 
@@ -11,7 +12,7 @@ import static java.util.stream.Collectors.toList;
 
 public class BoardTestSuite {
 
-    private  Board project = prepareTestData();
+    private Board project = prepareTestData();
 
     public Board prepareTestData() {
         //users
@@ -76,11 +77,7 @@ public class BoardTestSuite {
     }
 
 
-
-
-
-
-    public double averageDaysTaskInProgress(Board board, List<TaskList> list){
+    public double averageDaysTaskInProgress(Board board, List<TaskList> list) {
         /* Ten zakomentowany kod chcialem zeby tu został w celach edukacyjnych
         return board.getTaskLists().stream()
                 .filter(list::contains)
@@ -92,11 +89,11 @@ public class BoardTestSuite {
         return board.getTaskLists().stream()
                 .filter(list::contains)
                 .flatMap(tl -> tl.getTasks().stream())
-                .map(localDate -> DAYS.between(localDate.getCreated(),LocalDate.now()))
-                .mapToDouble(t->t).average().getAsDouble();
+                .map(localDate -> DAYS.between(localDate.getCreated(), LocalDate.now()))
+                .mapToDouble(t -> t).average().getAsDouble();
     }
 
-    public int countTaskInProgress(Board board, List<TaskList> list){
+    public int countTaskInProgress(Board board, List<TaskList> list) {
         return ((int) board.getTaskLists().stream()
                 .filter(list::contains)
                 .flatMap(tl -> tl.getTasks().stream())
@@ -177,10 +174,10 @@ public class BoardTestSuite {
         //When
         List<TaskList> inProgressTasks = new ArrayList<>();
         inProgressTasks.add(new TaskList("In progress"));
-        double averageDays=averageDaysTaskInProgress(project,inProgressTasks);
-        int taskNumb=countTaskInProgress(project,inProgressTasks);
+        double averageDays = averageDaysTaskInProgress(project, inProgressTasks);
+        int taskNumb = countTaskInProgress(project, inProgressTasks);
 
-        Assert.assertEquals(10, averageDays,0.0);
+        Assert.assertEquals(10, averageDays, 0.0);
         Assert.assertEquals(3, taskNumb);
     }
 
