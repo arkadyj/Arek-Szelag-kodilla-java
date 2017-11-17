@@ -76,14 +76,12 @@ public class BoardTestSuite {
     }
 
 
-    static public void test(){
-        1+1;
-    }
 
 
 
-    public int sumTaskInProgressDays(Board board, List<TaskList> list){
-        /*
+
+    public double averageDaysTaskInProgress(Board board, List<TaskList> list){
+        /* Ten zakomentowany kod chcialem zeby tu został w celach edukacyjnych
         return board.getTaskLists().stream()
                 .filter(list::contains)
                 .flatMap(tl -> tl.getTasks().stream())
@@ -91,14 +89,11 @@ public class BoardTestSuite {
                 .map(t -> t.intValue())
                 .reduce(0,Integer::sum);
          */
-
-
         return board.getTaskLists().stream()
                 .filter(list::contains)
                 .flatMap(tl -> tl.getTasks().stream())
                 .map(localDate -> DAYS.between(localDate.getCreated(),LocalDate.now()))
-                .map(t -> t.intValue())
-                .reduce(0,Integer::);
+                .mapToDouble(t->t).average().getAsDouble();
     }
 
     public int countTaskInProgress(Board board, List<TaskList> list){
@@ -108,10 +103,6 @@ public class BoardTestSuite {
                 .count());
     }
 
-    @Before
-    public void beforeEveryTest() {
-
-    }
 
     @Test
     public void testAddTaskList() {
@@ -186,49 +177,10 @@ public class BoardTestSuite {
         //When
         List<TaskList> inProgressTasks = new ArrayList<>();
         inProgressTasks.add(new TaskList("In progress"));
-        int sumOfDays=sumTaskInProgressDays(project,inProgressTasks);
+        double averageDays=averageDaysTaskInProgress(project,inProgressTasks);
         int taskNumb=countTaskInProgress(project,inProgressTasks);
-        double averageTaskDays;
 
-<<<<<<< HEAD
-        temporary = project.getTaskLists().stream()
-                .filter(inProgressTasks::contains)
-                .flatMap(tl -> tl.getTasks().stream())
-                //.map(localDate -> DAYS.between(localDate.getCreated(),LocalDate.now()))
-                 .map(localDate -> DAYS.between(localDate.getCreated(),LocalDate.now()))
-                //.mapToInt(l)
-
-                .collect(toList());
-
-
-
-         List<Integer> lista1 = new ArrayList<>();
-         lista1.add(0);
-         lista1.add(10);
-         lista1.add(20);
-
-          lista1.stream()
-                 .filter(n->n!=0)
-                  .reduce(Integer::sum)
-                    .ifPresent(s-> System.out.println(s));
-
-                  //.forEach(System.out::println);
-
-        //System.out.println(temporary);
-
-
-=======
-        if (taskNumb==0) {
-            averageTaskDays=0;
-        }
-        else {
-            averageTaskDays=sumOfDays/taskNumb;
-        }
->>>>>>> 3c49d07d6c2f5bef645a64531f74b91caa0eba78
-
-        //Then
-        Assert.assertEquals(10, averageTaskDays,0.0);
-        Assert.assertEquals(30, sumOfDays);
+        Assert.assertEquals(10, averageDays,0.0);
         Assert.assertEquals(3, taskNumb);
     }
 
