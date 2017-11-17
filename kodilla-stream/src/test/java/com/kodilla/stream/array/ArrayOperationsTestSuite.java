@@ -17,7 +17,7 @@ public class ArrayOperationsTestSuite {
         Double result = ArrayOperations.getAverage(tab);
 
         //Then
-        Assert.assertEquals(2.5, result, 0.0);
+        Assert.assertEquals (2.5, result, 0.0);
         Assert.assertEquals(4, tab.length);
 
     }
