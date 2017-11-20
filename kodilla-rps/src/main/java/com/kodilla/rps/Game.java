@@ -7,8 +7,8 @@ public class Game {
     private boolean end = false;
     private int roundNumb;
     private int gameStage=0;
-    private Player player = new Player();
-    private Rules rules = new Rules();
+    private Player player;
+    private Rules rules;
 
 
     //private Input input;
@@ -18,20 +18,29 @@ public class Game {
     public void firstMenu(){
         System.out.println("Initial menu: ");
         System.out.println("Please enter your name.");
-        player.setName(inputStringFromKeyboard());
+        player = new Player(inputStringFromKeyboard());
         System.out.println("Please enter number round");
         roundNumb=inputIntFromKeyborad();
-
+        inputStringFromKeyboard();
     }
 
     public void secondMenu(){
-        System.out.println("In game keys: ");
-        System.out.println("Press 1 to choose rock");
-        System.out.println("press 2 to choose paper");
-        System.out.println("Press 3 to choose scissors");
+        System.out.println("Menu:");
         System.out.println("Press x to exit the game");
         System.out.println("Press n to play again");
-        System.out.println("Press space to play the game");
+       if (gameStage==1) {
+           System.out.println("Press space to play the game\n");
+       }
+       else {
+           System.out.println("\n");
+       }
+    }
+
+    public void legendMenu(){
+        System.out.println("\nLegend - in game keys: ");
+        System.out.println("Press 1 to choose rock");
+        System.out.println("press 2 to choose paper");
+        System.out.println("Press 3 to choose scissors\n");
     }
 
     public void exitGame(){
@@ -51,6 +60,7 @@ public class Game {
             gameStage=1;
         }
         secondMenu();
+        game(inputStringFromKeyboard());
     }
 
     public boolean isEnd() {
@@ -70,15 +80,8 @@ public class Game {
     }
 
     public void game(String option){
- /*
-        if (option==2){
-           setEnd(true);
-            //input.sc.close();
-
-        }*/
 
         switch (option) {
-
             case "x": {
                 System.out.println("Are you sure?? Y/N");
 
@@ -94,17 +97,21 @@ public class Game {
                 }
             }
             case " ": {
+                legendMenu();
+                rules = new Rules();
                 rules.playGame(roundNumb, player.getName());
+
                 break;
             }
+            case "n": {
+                gameStage=0;
+                gameMenu();
+            }
 
-
-
-
-
+            default: {
+                System.out.println("Please enter proper key \n\n");
+                break;
+            }
         }
-
-
-
     }
 }

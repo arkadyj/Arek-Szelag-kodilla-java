@@ -23,7 +23,7 @@ public class RpsRunner {
              //   input.setEnd(true);
             //}
 
-            game.game(game.inputStringFromKeyboard());
+            //game.game(game.inputStringFromKeyboard());
 
 
         }

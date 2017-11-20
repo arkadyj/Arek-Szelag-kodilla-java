@@ -8,11 +8,7 @@ public class Player {
         this.name = name;
     }
 
-    public Player(){
-
-    }
-
-    public String getName() {
+      public String getName() {
         return name;
     }
 
