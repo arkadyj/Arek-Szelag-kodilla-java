@@ -9,7 +9,7 @@ public class RpsRunner {
 
     public static void main(String[] args) {
 
-        Input input = new Input();
+        //Input input = new Input();
         Game game = new Game();
        // Scanner sc = new Scanner(System.in);
 

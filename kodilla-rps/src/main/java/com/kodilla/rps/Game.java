@@ -7,6 +7,7 @@ public class Game {
     private boolean end = false;
     private int roundNumb;
     private int gameStage=0;
+    private int afterGame=0;
     private Player player;
     private Rules rules;
 
@@ -27,8 +28,10 @@ public class Game {
     public void secondMenu(){
         System.out.println("Menu:");
         System.out.println("Press x to exit the game");
-        System.out.println("Press n to play again");
-       if (gameStage==1) {
+        if (afterGame==1) {
+            System.out.println("Press n to play again");
+        }
+       if (gameStage==1 && afterGame==0) {
            System.out.println("Press space to play the game\n");
        }
        else {
@@ -37,21 +40,19 @@ public class Game {
     }
 
     public void legendMenu(){
-        System.out.println("\nLegend - in game keys: ");
-        System.out.println("Press 1 to choose rock");
-        System.out.println("press 2 to choose paper");
-        System.out.println("Press 3 to choose scissors\n");
+
+        System.out.println("\nIn game rules: ");
+        System.out.println("Rock beats scissors");
+        System.out.println("Paper beats rock");
+        System.out.println("Scissors beats paper");
+        System.out.println("Rock beats lizard");
+        System.out.println("Lizard beats Spock");
+        System.out.println("Spock beats scissors");
+        System.out.println("Scissors beats lizard");
+        System.out.println("Lizard beats paper");
+        System.out.println("Paper beats Spock");
+        System.out.println("Spock beats rock");
     }
-
-    public void exitGame(){
-
-    }
-
-    public void printPlayerName() {
-        System.out.println(player.getName());
-        System.out.println(roundNumb);
-    }
-
 
 
     public void gameMenu() {
@@ -100,11 +101,12 @@ public class Game {
                 legendMenu();
                 rules = new Rules();
                 rules.playGame(roundNumb, player.getName());
-
+                afterGame=1;
                 break;
             }
             case "n": {
                 gameStage=0;
+                afterGame=0;
                 gameMenu();
             }
 
