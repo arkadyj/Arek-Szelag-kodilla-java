@@ -6,39 +6,59 @@ public class Game {
     Scanner sc = new Scanner(System.in);
     private boolean end = false;
     private int roundNumb;
-    private int gameStage=0;
-    private int afterGame=0;
+    private int gameStage = 0;
+    private int afterGame = 0;
+    private int difficultLevel = 1; // 0- for easy, 1 - for normal, 2 for hard
     private Player player;
     private Rules rules;
 
     //private Input input;
     //Input input = new Input();
 
+    public void difficultMenu(){
+        System.out.println("Press 0 to set difficulty level to easy");
+        System.out.println("Press 1 to set difficulty level to normal");
+        System.out.println("Press 2 to set difficulty level to hard");
+        difficultLevel=inputIntFromKeyborad();
+        inputStringFromKeyboard();
+    }
 
-    public void firstMenu(){
+    public String recognizeDifficultLevel(){
+
+        if (difficultLevel==0){
+            return "Easy";
+        }
+        else if (difficultLevel==1) {
+            return "Normal";
+        }
+        else return "Hard";
+    }
+
+
+    public void firstMenu() {
         System.out.println("Initial menu: ");
         System.out.println("Please enter your name.");
         player = new Player(inputStringFromKeyboard());
         System.out.println("Please enter number round");
-        roundNumb=inputIntFromKeyborad();
+        roundNumb = inputIntFromKeyborad();
         inputStringFromKeyboard();
     }
 
-    public void secondMenu(){
+    public void secondMenu() {
         System.out.println("Menu:");
+        System.out.println("Press d to change difficulty level");
         System.out.println("Press x to exit the game");
-        if (afterGame==1) {
+        if (afterGame == 1) {
             System.out.println("Press n to play again");
         }
-       if (gameStage==1 && afterGame==0) {
-           System.out.println("Press space to play the game\n");
-       }
-       else {
-           System.out.println("\n");
-       }
+        if (gameStage == 1 && afterGame == 0) {
+            System.out.println("Press space to play the game\n");
+        } else {
+            System.out.println("\n");
+        }
     }
 
-    public void legendMenu(){
+    public void legendMenu() {
 
         System.out.println("\nIn game rules: ");
         System.out.println("Rock beats scissors");
@@ -55,9 +75,9 @@ public class Game {
 
 
     public void gameMenu() {
-        if (gameStage==0){
+        if (gameStage == 0) {
             firstMenu();
-            gameStage=1;
+            gameStage = 1;
         }
         secondMenu();
         game(inputStringFromKeyboard());
@@ -71,15 +91,15 @@ public class Game {
         this.end = end;
     }
 
-    public int inputIntFromKeyborad(){
+    public int inputIntFromKeyborad() {
         return sc.nextInt();
     }
 
-    public String inputStringFromKeyboard(){
+    public String inputStringFromKeyboard() {
         return sc.nextLine();
     }
 
-    public void game(String option){
+    public void game(String option) {
 
         switch (option) {
             case "x": {
@@ -88,8 +108,7 @@ public class Game {
                 if (inputStringFromKeyboard().equals("N")) {
                     gameMenu();
                     break;
-                }
-                else {
+                } else {
                     System.out.println("Exit from the game");
                     setEnd(true);
                     sc.close();
@@ -99,14 +118,21 @@ public class Game {
             case " ": {
                 legendMenu();
                 rules = new Rules();
-                rules.playGame(roundNumb, player.getName());
-                afterGame=1;
+                rules.playGame(roundNumb, player.getName(), difficultLevel, recognizeDifficultLevel());
+                afterGame = 1;
                 break;
             }
             case "n": {
-                gameStage=0;
-                afterGame=0;
+                gameStage = 0;
+                afterGame = 0;
                 gameMenu();
+                break;
+            }
+
+            case "d": {
+                difficultMenu();
+                gameMenu();
+                break;
             }
 
             default: {
