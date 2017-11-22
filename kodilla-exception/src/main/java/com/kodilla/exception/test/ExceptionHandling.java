@@ -6,7 +6,7 @@ public class ExceptionHandling extends Exception{
     public static void exceptionHandling(SecondChallenge secondChallenge) {
 
         try {
-            secondChallenge.probablyIWillThrowException(3.5, 7.5);
+            secondChallenge.probablyIWillThrowException(4.5, 4.5);
         } catch (Exception e) {
             System.out.println("Remember x must be smaller than 2 and grater than 1 and y must be different from 1.5");
         } finally {
