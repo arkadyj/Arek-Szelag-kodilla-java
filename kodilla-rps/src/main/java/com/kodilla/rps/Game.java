@@ -11,7 +11,6 @@ public class Game {
     private Player player;
     private Rules rules;
 
-
     //private Input input;
     //Input input = new Input();
 

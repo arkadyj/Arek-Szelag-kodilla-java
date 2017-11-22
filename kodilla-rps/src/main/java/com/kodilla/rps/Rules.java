@@ -1,13 +1,13 @@
 package com.kodilla.rps;
 
-import java.util.HashSet;
-import java.util.Random;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 
 public class Rules  {
     Scanner sc = new Scanner(System.in);
     Random rand = new Random();
+    private Set<Integer> gameChoose = new HashSet<>();
+
+
 
     int humanWin=0;
     int computerWin=0;
@@ -17,6 +17,12 @@ public class Rules  {
 
     Set<GameCondition> winCondition = new HashSet<>();
     Set<GameCondition> loseCondition = new HashSet<>();
+
+
+    public void fillSet(){
+        gameChoose.add(1);
+        gameChoose.add(2);
+    }
 
 
 
@@ -103,6 +109,7 @@ public class Rules  {
 
     }
     public int computerMove(){
+        Integer result = Collections.shuffle(gameChoose);
         return rand.nextInt(5)+1;
     }
 
