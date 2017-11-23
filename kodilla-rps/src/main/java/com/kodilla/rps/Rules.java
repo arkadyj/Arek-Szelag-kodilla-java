@@ -7,7 +7,7 @@ import static jdk.nashorn.internal.objects.NativeString.substring;
 public class Rules {
 
     Random rand = new Random();
-    File file = new File();
+    //ile file = new File();
 
     int humanWin = 0;
     int computerWin = 0;
@@ -43,7 +43,7 @@ public class Rules {
     }
 
 
-    public void playGame(int roundsNumber, String name, int difficultLevel, String stringDifficultLevel) throws WrongDataException {
+    public void playGame(int roundsNumber, String name, int difficultLevel, String stringDifficultLevel, File file) throws WrongDataException {
         int round = 1;
         winChoices();
         loseChoices();
@@ -126,22 +126,22 @@ public class Rules {
         return possibleElementsChooseList.get(rand.nextInt(possibleElementsChooseList.size()));
     }
 
-    public void choiceWhoWin(int human, int computer) {
+    public void choiceWhoWin(int humanChoice, int computerChoice) {
 
-        GameCondition comparision = new GameCondition(human + "-" + computer);
+        GameCondition comparision = new GameCondition(humanChoice + "-" + computerChoice);
 
         if (winCondition.contains(comparision)) {
-            System.out.println("\nPlayer win: " + comparision );
+            System.out.println("\nPLAYER WIN. " + comparision );
             humanWin++;
         } else if (loseCondition.contains(comparision)) {
-            System.out.println("\nComputer win: " + comparision );
+            System.out.println("\nCOMPUTER WIN. " + comparision );
             computerWin++;
-        } else if (human<1 || human>5) {
+        } else if (humanChoice<1 || humanChoice>5) {
             System.out.println("Wrong digit. You should pick digit from 1 to 5");
         } else {
-            System.out.println("\nTie " + comparision);
+            System.out.println("\nTIE " + comparision);
         }
-        System.out.println("Score game: Player - computer: "+ humanWin + "-" + computerWin + "\n");
+        System.out.println("Score game: Player - Computer: "+ humanWin + "-" + computerWin + "\n");
         //System.out.println(humanWin + " - " + computerWin + "\n");
 
     }

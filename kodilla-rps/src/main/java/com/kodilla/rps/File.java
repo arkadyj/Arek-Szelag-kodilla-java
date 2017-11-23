@@ -12,14 +12,14 @@ public class File {
         DateTimeFormatter dataTimeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
         try {
-            java.io.File scoreFile = new java.io.File(System.getProperty("java.io.tmpdir") +"/score.txt");
+            java.io.File scoreFile = new java.io.File("./kodilla-rps/src/main/resources/File/gameScore.txt");
             scoreFile.createNewFile();
             FileOutputStream oFile = new FileOutputStream(scoreFile, true);
             DataOutputStream outStream = new DataOutputStream(new BufferedOutputStream(oFile));
-            outStream.writeBytes(System.getProperty("line.separator"));
             String toWrite =  "Game : "+ LocalDateTime.now().format(dataTimeFormat) + ",  player: "+name+ ",  difficulty level: "+
                     difficultyLevel+ "|| Game result: human - computer: "+humanWin+ " - "+computerWin;
             outStream.writeBytes(toWrite);
+            outStream.writeBytes(System.getProperty("line.separator"));
             outStream.close();
 
 
@@ -33,10 +33,9 @@ public class File {
 
     public void readFromFile(){
 
-
+        System.out.println("#######################PRINTIG SCORE RESULT#########################");
         try {
-
-            InputStream in = new FileInputStream(new java.io.File(System.getProperty("java.io.tmpdir") +"/score.txt"));
+            InputStream in = new FileInputStream(new java.io.File("./kodilla-rps/src/main/resources/File/gameScore.txt"));
             BufferedReader reader = new BufferedReader(new InputStreamReader(in));
             StringBuilder out = new StringBuilder();
             String line;
@@ -48,6 +47,27 @@ public class File {
             reader.close();
         }catch (IOException e) {
             System.out.println("Can't read from file!! "+e);
+        } finally {
+            System.out.println("\n");
+        }
+    }
+
+    public void clearScoreFile (){
+
+        try {
+            java.io.File scoreFile = new java.io.File("./kodilla-rps/src/main/resources/File/gameScore.txt");
+            scoreFile.createNewFile();
+            FileOutputStream oFile = new FileOutputStream(scoreFile, false);
+            DataOutputStream outStream = new DataOutputStream(new BufferedOutputStream(oFile));
+            outStream.writeBytes("");
+            outStream.close();
+
+
+        } catch (IOException e) {
+            System.out.println("Can't open/create file!! "+e);
+        }
+        finally {
+
         }
     }
 }

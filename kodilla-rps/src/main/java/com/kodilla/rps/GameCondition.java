@@ -29,7 +29,7 @@ public class GameCondition {
 
     @Override
     public String toString() {
-        return "choices in this round: player - computer: "
+        return "Player pick - Computer pick: "
                  + condition;
     }
 }

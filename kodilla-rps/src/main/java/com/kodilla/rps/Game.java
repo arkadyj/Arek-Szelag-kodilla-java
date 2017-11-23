@@ -1,5 +1,6 @@
 package com.kodilla.rps;
 
+import javax.xml.bind.SchemaOutputResolver;
 import java.io.IOException;
 import java.util.*;
 
@@ -12,7 +13,7 @@ public class Game {
     private int difficultLevel = 2; // 1- for easy, 2 - for normal, 3 for hard
     private Player player;
     private Rules rules;
-    private File file;
+    private File file = new File();
 
     //private Input input;
     //Input input = new Input();
@@ -40,6 +41,37 @@ public class Game {
         inputStringFromKeyboard();
     }
 
+    public void playAgain(){
+        legendMenu();
+        rules = new Rules();
+        try {
+            rules.playGame(roundNumb, player.getName(), difficultLevel, recognizeDifficultLevel(),file);
+        }catch (WrongDataException e){
+            System.out.println("PlayGame - wrong initialized data");
+        }
+        afterGame = 1;
+
+    }
+
+    public void changePlayerName(){
+        System.out.println("Please enter your name.");
+        if (player==null){
+            player = new Player(inputStringFromKeyboard());
+            if (player.getName().length()<=3) {
+                System.out.println("Please enter min 3 chars");
+                changePlayerName();
+            }
+        }
+        else {
+            player.setName(inputStringFromKeyboard());
+            if (player.getName().length()<=3) {
+                System.out.println("Please enter min 3 chars");
+                changePlayerName();
+            }
+        }
+    }
+
+
     public String recognizeDifficultLevel(){
 
         if (difficultLevel==1){
@@ -51,26 +83,34 @@ public class Game {
         else return "Hard";
     }
 
-
-    public void firstMenu() {
-        System.out.println("Initial menu: ");
-        System.out.println("Please enter your name.");
-        player = new Player(inputStringFromKeyboard());
+    public void changeRoundNumber(){
         System.out.println("Please enter number of rounds you want to play ");
-
         while (!sc.hasNextInt()){
             sc.next();
             System.out.println("Please enter digit 1-99");
         }
         roundNumb=sc.nextInt();
-
         inputStringFromKeyboard();
     }
 
+
+    public void firstMenu() {
+        System.out.println("Initial menu: ");
+        changePlayerName();
+        changeRoundNumber();
+
+    }
+
     public void secondMenu() {
+
+        System.out.println("Player name: "+player.getName()+", number of round: "+roundNumb+ ", difficulty level: "+recognizeDifficultLevel());
+        System.out.println("###############################################");
         System.out.println("Menu:");
         System.out.println("Press d to change difficulty level");
-        System.out.println("Press p to print results");
+        System.out.println("Press p to change player name");
+        System.out.println("Press r to print results");
+        System.out.println("Press c to clear score file");
+        System.out.println("Press t to change number of rounds");
         System.out.println("Press x to exit the game");
         if (afterGame == 1) {
             System.out.println("Press n to play again");
@@ -85,16 +125,16 @@ public class Game {
     public void legendMenu() {
 
         System.out.println("\nIn game rules: ");
-        System.out.println("Rock beats scissors");
-        System.out.println("Paper beats rock");
-        System.out.println("Scissors beats paper");
-        System.out.println("Rock beats lizard");
-        System.out.println("Lizard beats Spock");
-        System.out.println("Spock beats scissors");
-        System.out.println("Scissors beats lizard");
-        System.out.println("Lizard beats paper");
-        System.out.println("Paper beats Spock");
-        System.out.println("Spock beats rock");
+        System.out.println("Rock(1) beats scissors(3)");
+        System.out.println("Paper(2) beats rock(1)");
+        System.out.println("Scissors(3) beats paper(2)");
+        System.out.println("Rock(1) beats lizard(4)");
+        System.out.println("Lizard(4) beats Spock(5)");
+        System.out.println("Spock(5) beats scissors(3)");
+        System.out.println("Scissors(3) beats lizard(4)");
+        System.out.println("Lizard(4) beats paper(2)");
+        System.out.println("Paper(2) beats Spock(5)");
+        System.out.println("Spock(5) beats rock(1)");
     }
 
 
@@ -126,6 +166,39 @@ public class Game {
     public void game(String option) {
 
         switch (option) {
+
+            case " ": {
+                playAgain();
+                break;
+            }
+            case "c": {
+                file.clearScoreFile();
+                gameMenu();
+                break;
+            }
+            case "d": {
+                difficultMenu(difficultLevel);
+                gameMenu();
+                break;
+            }
+            case "n": {
+                playAgain();
+                break;
+            }
+            case "p": {
+                changePlayerName();
+                gameMenu();
+                break;
+            }
+
+            case "r": {
+                file.readFromFile();
+                break;
+            }
+            case "t": {
+                changeRoundNumber();
+                break;
+            }
             case "x": {
                 System.out.println("Are you sure?? Press Y to confirm.");
 
@@ -140,36 +213,8 @@ public class Game {
                     break;
                 }
             }
-            case " ": {
-                legendMenu();
-                rules = new Rules();
-                try {
-                    rules.playGame(roundNumb, player.getName(), difficultLevel, recognizeDifficultLevel());
-                }catch (WrongDataException e){
-                    System.out.println("PlayGame - wrong initialized data");
-                }
 
-                afterGame = 1;
-                break;
-            }
-            case "n": {
-                gameStage = 0;
-                afterGame = 0;
-                gameMenu();
-                break;
-            }
 
-            case "p": {
-                file = new File();
-                file.readFromFile();
-                break;
-            }
-
-            case "d": {
-                difficultMenu(difficultLevel);
-                gameMenu();
-                break;
-            }
 
             default: {
                 System.out.println("Please enter proper key \n\n");
