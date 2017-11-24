@@ -30,6 +30,6 @@ public class GameCondition {
     @Override
     public String toString() {
         return "Player pick - Computer pick: "
-                 + condition;
+                + condition;
     }
 }

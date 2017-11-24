@@ -1,2 +1,0 @@
-Game : 2017-11-23 20:56:59,  player: Darek,  difficulty level: Normal|| Game result: human - computer: 1 - 4
-Game : 2017-11-23 20:57:41,  player: Darek,  difficulty level: Normal|| Game result: human - computer: 2 - 4

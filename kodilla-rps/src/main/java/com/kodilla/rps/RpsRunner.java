@@ -5,10 +5,10 @@ public class RpsRunner {
 
     public static void main(String[] args) {
 
-        Game game = new Game();
+        MenuRunner menu = new MenuRunner();
 
-        while (!game.isEnd()) {
-            game.gameMenu();
+        while (!menu.isEnd()) {
+            menu.gameMenu();
         }
     }
 }

@@ -4,10 +4,10 @@ import javax.xml.bind.SchemaOutputResolver;
 import java.io.IOException;
 import java.util.*;
 
-public class Game {
+public class MenuRunner {
     Scanner sc = new Scanner(System.in);
     private boolean end = false;
-    private int roundNumb=0;
+    private int roundNumb = 0;
     private int gameStage = 0;
     private int afterGame = 0;
     private int difficultLevel = 2; // 1- for easy, 2 - for normal, 3 for hard
@@ -15,81 +15,78 @@ public class Game {
     private Rules rules;
     private File file = new File();
 
-    //private Input input;
-    //Input input = new Input();
-
-    public void difficultMenu(int oldDifficultLevel){
+    //ustawienie stopnia trudności
+    public void difficultMenu(int oldDifficultLevel) {
         System.out.println("Press 1 to set difficulty level to easy");
         System.out.println("Press 2 to set difficulty level to normal");
         System.out.println("Press 3 to set difficulty level to hard");
 
         try {
-            difficultLevel=inputIntFromKeyborad();
-            if (difficultLevel>=1 && difficultLevel<=3) {
+            difficultLevel = inputIntFromKeyborad();
+            if (difficultLevel >= 1 && difficultLevel <= 3) {
                 System.out.println("Difficulty level has been changed \n");
             }
         } catch (InputMismatchException e) {
             System.out.println("Difficulty level hasn't been changed. Please enter valid level from 1 to 3\n");
 
         } finally {
-            if (difficultLevel<1 || difficultLevel>3){
+            if (difficultLevel < 1 || difficultLevel > 3) {
                 System.out.println("Wrong difficulty level. Difficulty level has been restored\n");
-                difficultLevel=oldDifficultLevel;
+                difficultLevel = oldDifficultLevel;
 
             }
         }
         inputStringFromKeyboard();
     }
 
-    public void playAgain(){
+    //rozegraj grę jeszcze raz dla tych samych ustawień
+    public void playAgain() {
         legendMenu();
         rules = new Rules();
         try {
-            rules.playGame(roundNumb, player.getName(), difficultLevel, recognizeDifficultLevel(),file);
-        }catch (WrongDataException e){
+            rules.playGame(roundNumb, player.getName(), difficultLevel, recognizeDifficultLevel(), file);
+        } catch (WrongDataException e) {
             System.out.println("PlayGame - wrong initialized data");
         }
         afterGame = 1;
 
     }
 
-    public void changePlayerName(){
+    public void changePlayerName() {
         System.out.println("Please enter your name.");
-        if (player==null){
+        if (player == null) {
             player = new Player(inputStringFromKeyboard());
-            if (player.getName().length()<=3) {
+            if (player.getName().length() <= 3) {
                 System.out.println("Please enter min 3 chars");
                 changePlayerName();
             }
-        }
-        else {
+        } else {
             player.setName(inputStringFromKeyboard());
-            if (player.getName().length()<=3) {
+            if (player.getName().length() <= 3) {
                 System.out.println("Please enter min 3 chars");
                 changePlayerName();
             }
         }
     }
 
+    //metoda zwracająca słownie poziom trudności
+    public String recognizeDifficultLevel() {
 
-    public String recognizeDifficultLevel(){
-
-        if (difficultLevel==1){
+        if (difficultLevel == 1) {
             return "Easy";
-        }
-        else if (difficultLevel==2) {
+        } else if (difficultLevel == 2) {
             return "Normal";
-        }
-        else return "Hard";
+        } else return "Hard";
     }
 
-    public void changeRoundNumber(){
+    //zmiana ilości rund do rozegrania
+    public void changeRoundNumber() {
         System.out.println("Please enter number of rounds you want to play ");
-        while (!sc.hasNextInt()){
+        while (!sc.hasNextInt()) {
             sc.next();
             System.out.println("Please enter digit 1-99");
         }
-        roundNumb=sc.nextInt();
+        roundNumb = sc.nextInt();
         inputStringFromKeyboard();
     }
 
@@ -103,7 +100,7 @@ public class Game {
 
     public void secondMenu() {
 
-        System.out.println("Player name: "+player.getName()+", number of round: "+roundNumb+ ", difficulty level: "+recognizeDifficultLevel());
+        System.out.println("Player name: " + player.getName() + ", number of round: " + roundNumb + ", difficulty level: " + recognizeDifficultLevel());
         System.out.println("###############################################");
         System.out.println("Menu:");
         System.out.println("Press d to change difficulty level");
@@ -137,7 +134,7 @@ public class Game {
         System.out.println("Spock(5) beats rock(1)");
     }
 
-
+    //metoda uruchamiana w petli, steruje menu
     public void gameMenu() {
         if (gameStage == 0) {
             firstMenu();
@@ -207,17 +204,14 @@ public class Game {
                     setEnd(true);
                     sc.close();
                     break;
-                }
-                else {
+                } else {
                     gameMenu();
                     break;
                 }
             }
 
-
-
             default: {
-                System.out.println("Please enter proper key \n\n");
+                System.out.println("Please enter proper key \n");
                 break;
             }
         }
