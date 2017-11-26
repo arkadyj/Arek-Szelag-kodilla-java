@@ -15,6 +15,11 @@ public class MenuRunner {
     private Rules rules;
     private File file = new File();
 
+    public enum DifficultMenu {
+
+    }
+
+
     //ustawienie stopnia trudności
     public void difficultMenu(int oldDifficultLevel) {
         System.out.println("Press 1 to set difficulty level to easy");

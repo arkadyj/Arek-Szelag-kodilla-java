@@ -4,12 +4,12 @@ import java.util.*;
 
 public class Rules {
 
-    Random rand = new Random();
-    int humanWin = 0;
-    int computerWin = 0;
+    private Random rand = new Random();
+    private int humanWin = 0;
+    private int computerWin = 0;
 
-    Set<GameCondition> winCondition = new HashSet<>();
-    Set<GameCondition> loseCondition = new HashSet<>();
+    private Set<GameCondition> winCondition = new HashSet<>();
+    private Set<GameCondition> loseCondition = new HashSet<>();
 
     //możliwe zwycięskie kombinacje dla gracza
     public void winChoices() {
@@ -37,6 +37,40 @@ public class Rules {
         loseCondition.add(new GameCondition("2-4"));
         loseCondition.add(new GameCondition("5-2"));
         loseCondition.add(new GameCondition("1-5"));
+    }
+
+    public enum  ChoicesEnum {
+        Result21(true),
+        Result32(true),
+        Result13(true),
+        Result14(true),
+        Result45(true),
+        Result53(true),
+        Result34(true),
+        Result42(true),
+        Result25(true),
+        Result51(true),
+
+        Result12(false),
+        Result23(false),
+        Result31(false),
+        Result41(false),
+        Result54(false),
+        Result35(false),
+        Result43(false),
+        Result24(false),
+        Result52(false),
+        Result15(false);
+
+        private boolean doIWin;
+
+        private ChoicesEnum (boolean doIWin) {
+            this.doIWin = doIWin;
+        }
+
+        public boolean isDoIWin() {
+            return doIWin;
+        }
     }
 
     //metoda sterująca rozgrywką
@@ -140,5 +174,12 @@ public class Rules {
         }
         System.out.println("Score game: Player - Computer: " + humanWin + "-" + computerWin + "\n");
         //System.out.println(humanWin + " - " + computerWin + "\n");
+    }
+
+    public void choiceWhoWinEnum (int humanWin, int computerWin){
+
+        String toCompare = "Result"+humanWin+computerWin;
+        //ChoicesEnum choicesEnum = new ChoicesEnum.toCompare;
+
     }
 }
