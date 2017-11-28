@@ -16,7 +16,15 @@ public class MenuRunner {
     private File file = new File();
 
     public enum DifficultMenu {
+        EASY("1"),
+        NORMAL("2"),
+        HARD("3");
 
+        private String difLevel;
+
+        DifficultMenu (String difLevel){
+            this.difLevel=difLevel;
+        }
     }
 
 

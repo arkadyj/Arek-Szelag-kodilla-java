@@ -13,15 +13,34 @@ public class Example1 {
         DifficultLevel (String level){
             this.level=level;
         }
+
+        public String getLevel(){
+            return level;
+        }
+    }
+
+    public static String difficultRecognizer(int level){
+
+
+        String stringLevel = Integer.toString(level);
+        System.out.println(stringLevel);
+
+        System.out.println(DifficultLevel.valueOf("1"));
+
+        return "aaa";
     }
 
     public static void main(String[] args) {
 
         DifficultLevel difficultLevel = DifficultLevel.EASY;
 
-        System.out.println("Poziom Easy: "+difficultLevel.level);
+        //System.out.println("Poziom: "+difficultLevel);
+
+        difficultRecognizer(1);
 
     }
+
+
 
 
 }
