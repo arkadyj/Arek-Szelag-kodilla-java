@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Archivizer implements OrdersArchivizer {
+    private List<ManufactureProductOrderDto> ordersList = new ArrayList<>();
 
     public void orderToArchive( ManufactureProductOrderDto manufactureProductOrderDto) {
-        List<ManufactureProductOrderDto> ordersList = new ArrayList<>();
         ordersList.add(manufactureProductOrderDto);
     }
 }

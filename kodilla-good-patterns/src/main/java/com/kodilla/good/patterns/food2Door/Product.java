@@ -3,9 +3,9 @@ package com.kodilla.good.patterns.food2Door;
 public class Product {
 
     private String productName;
-    private int itemCost;
+    private double itemCost;
 
-    public Product(String productName, int itemCost) {
+    public Product(String productName, double itemCost) {
         this.productName = productName;
         this.itemCost = itemCost;
     }
@@ -14,7 +14,16 @@ public class Product {
         return productName;
     }
 
-    public int getItemCost() {
+    public double getItemCost() {
         return itemCost;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "productName='" + productName + '\'' +
+                ", itemCost=" + itemCost +
+                '}';
     }
 }
