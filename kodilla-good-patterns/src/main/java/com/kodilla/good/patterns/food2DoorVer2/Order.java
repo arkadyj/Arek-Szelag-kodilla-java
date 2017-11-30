@@ -1,6 +1,8 @@
-package com.kodilla.good.patterns.food2Door;
+package com.kodilla.good.patterns.food2DoorVer2;
+
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Order {
 
@@ -8,8 +10,9 @@ public class Order {
     static private int number = 0;
     private LocalDateTime orderDate;
     private int quantity;
+    DateTimeFormatter dataTimeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-    public Order (Product product, LocalDateTime orderDate, int quantity) {
+    public Order(Product product, LocalDateTime orderDate, int quantity) {
         this.number += 1;
         this.orderDate = orderDate;
         this.quantity = quantity;
@@ -36,10 +39,11 @@ public class Order {
     public String toString() {
         return "Orders{" +
                 "order number= " + number +
-                " orderDate= " + orderDate +
+                ", orderDate= " + orderDate.format(dataTimeFormat) +
+                ", product name= " + product.getProductName() +
                 ", quantity= " + quantity +
+                ", product price " + product.getItemCost() +
+                ", order value " + quantity * product.getItemCost() +
                 '}';
     }
 }
-
-

@@ -1,16 +1,15 @@
-package com.kodilla.good.patterns.food2Door;
+package com.kodilla.good.patterns.food2DoorVer2;
 
-public class ManufactureProductOrderDto {
+
+public class OrderRepositoryObject {
 
     private String manufacture;
     private Order order;
-    private double manufactureMargin;
     private boolean orderResult;
 
-    public ManufactureProductOrderDto(String manufacture, Product product, Order order, double manufactureMargin, boolean orderResult) {
+    public OrderRepositoryObject(String manufacture, Order order, boolean orderResult) {
         this.manufacture = manufacture;
         this.order = order;
-        this.manufactureMargin = manufactureMargin;
         this.orderResult = orderResult;
     }
 
@@ -25,4 +24,5 @@ public class ManufactureProductOrderDto {
     public boolean isOrderResult() {
         return orderResult;
     }
+
 }
