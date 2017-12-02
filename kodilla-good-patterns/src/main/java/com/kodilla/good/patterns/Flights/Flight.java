@@ -5,8 +5,6 @@ import java.time.LocalDateTime;
 public class Flight {
 
     private String flightNumber;
-    private String departureAiport;
-    private String arrivalAirport;
     private LocalDateTime departureTime;
     private LocalDateTime arrivalTime;
     private FlightMap flightMap;

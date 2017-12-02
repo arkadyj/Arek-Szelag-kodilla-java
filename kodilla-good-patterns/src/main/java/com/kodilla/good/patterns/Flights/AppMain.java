@@ -9,13 +9,9 @@ public class AppMain {
         dataFeeder.flightBuilder(airlaneData.getFlightsMap());
         FlightsFinder flightsFinder = new FlightsFinder();
 
-        flightsFinder.findDeparture(airlaneData.getFlightsMap(),"Warszawa");
+        flightsFinder.findDeparture(airlaneData.getFlightsMap(),"Warsaw");
         flightsFinder.findArrival(airlaneData.getFlightsMap(),"Hamburg");
-        flightsFinder.findFlightAnotherCity(airlaneData.getFlightsMap(),"Warsaw", "Budapest", "Hamburg");
-
+        flightsFinder.findFlightAnotherCity(airlaneData.getFlightsMap(),"Warsaw", "Berlin", "Hamburg");
+        flightsFinder.findFlightAnotherCity(airlaneData.getFlightsMap(),"Warsaw", "Budapest", "Berlin");
     }
-
-
-
-
 }
