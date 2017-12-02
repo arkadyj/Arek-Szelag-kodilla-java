@@ -9,11 +9,9 @@ public class AirlaneData {
     private String airlaneName;
 
     public AirlaneData(String airlaneName) {
-        this.airlaneName=airlaneName;
+        this.airlaneName = airlaneName;
         flightsMap = new HashSet<>();
     }
-
-
 
     public Set<Flight> getFlightsMap() {
         return flightsMap;
