@@ -3,15 +3,14 @@ package com.kodilla.good.patterns.Flights;
 public class AppMain {
 
     public static void main(String[] args) {
-        DataFeeder dataFeeder = new DataFeeder();
-        AirlaneData airlaneData = new AirlaneData("New Hope AirLine");
 
-        dataFeeder.flightBuilder(airlaneData.getFlightsMap());
+
         FlightsFinder flightsFinder = new FlightsFinder();
+        PrintFlights printFlights = new PrintFlights();
+        Airlane lot = new Airlane("New Hope AirLine");
 
-        flightsFinder.findDeparture(airlaneData.getFlightsMap(),"Warsaw");
-        flightsFinder.findArrival(airlaneData.getFlightsMap(),"Hamburg");
-        flightsFinder.findFlightAnotherCity(airlaneData.getFlightsMap(),"Warsaw", "Berlin", "Hamburg");
-        flightsFinder.findFlightAnotherCity(airlaneData.getFlightsMap(),"Warsaw", "Budapest", "Berlin");
+        printFlights.printFlightFrom(flightsFinder.findDeparture(lot.getFlightsMap(), "Warsaw"));
+        printFlights.printFlightTo(flightsFinder.findArrival(lot.getFlightsMap(), "Berlin"));
+        printFlights.printFlightThroug(flightsFinder.findFlightAnotherCity(lot.getFlightsMap(), "Warsaw", "Berlin", "Hamburg"));
     }
 }

@@ -1,6 +1,7 @@
 package com.kodilla.good.patterns.Flights;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Flight {
 
@@ -8,6 +9,7 @@ public class Flight {
     private LocalDateTime departureTime;
     private LocalDateTime arrivalTime;
     private FlightMap flightMap;
+    DateTimeFormatter dataTimeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     public Flight(String flightNumber, LocalDateTime departureTime, LocalDateTime arrivalTime, FlightMap flightMap) {
         this.flightNumber = flightNumber;
@@ -56,11 +58,10 @@ public class Flight {
 
     @Override
     public String toString() {
-        return "Flight: " +
-                "flightNumber='" + flightNumber + '\'' +
-                ", departureTime=" + departureTime +
-                ", arrivalTime=" + arrivalTime +
-                ", flightMap=" + flightMap +
-                '}';
+        return "  " + flightNumber + "       " +
+                flightMap +
+                "    " + departureTime.format(dataTimeFormat) +
+                " " + arrivalTime.format(dataTimeFormat) +
+                "\n";
     }
 }

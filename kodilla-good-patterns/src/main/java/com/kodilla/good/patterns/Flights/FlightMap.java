@@ -5,7 +5,7 @@ public class FlightMap {
     private String arrival;
     private String departure;
 
-    public FlightMap( String departure, String arrival) {
+    public FlightMap(String departure, String arrival) {
         this.departure = departure;
         this.arrival = arrival;
     }
@@ -38,8 +38,8 @@ public class FlightMap {
 
     @Override
     public String toString() {
-        return " departure='" + departure + '\'' +
-                ", arrival='" + arrival + '\'';
+        return "" + departure +
+                "     " + arrival;
     }
 }
 
