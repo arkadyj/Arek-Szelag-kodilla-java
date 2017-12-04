@@ -43,10 +43,8 @@ public class PrintFlights {
         System.out.printf("%17s|  %15s| %15s| %20s| %20s|\n", "Flight number", "Departure", "Arrival", "ToD", "ToA");
 
         for (Set<Flight> set : flightThroughDto.getTemporaryList()) {
-            Set<Flight> testSet;
-            testSet = set.stream()
+            Set<Flight> testSet = set.stream()
                     .collect(Collectors.toCollection(()-> new TreeSet<>(Comparator.comparing(Flight::getArrivalTime))));
-
 
             System.out.println("###### Possible connection: ");
             for (Flight flight : testSet) {

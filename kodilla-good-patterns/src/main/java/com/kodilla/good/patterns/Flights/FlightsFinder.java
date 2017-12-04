@@ -44,7 +44,7 @@ public class FlightsFinder {
             Set<Flight> setSecondPart = flightFindThroughRequestDto.getFlightsSet().stream()
                     .filter(flight -> flight.getFlightMap().equals(new FlightMap(flightFindThroughRequestDto.getAirportThrough(), flightFindThroughRequestDto.getAirportTo())))
                     .filter(flight -> secondFlight.getDepartureTime().isBefore(flight.getArrivalTime()))
-                    .collect(Collectors.toCollection(()-> new TreeSet<>(Comparator.comparing(Flight::getArrivalTime))));
+                    .collect(Collectors.toSet());
 
             if (setFirstPart.size() > 0 && setSecondPart.size() > 0) {
 
