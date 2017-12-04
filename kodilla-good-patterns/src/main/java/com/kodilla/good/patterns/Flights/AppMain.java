@@ -8,9 +8,10 @@ public class AppMain {
         FlightsFinder flightsFinder = new FlightsFinder();
         PrintFlights printFlights = new PrintFlights();
         Airlane lot = new Airlane("New Hope AirLine");
+        FlightFindRequest flightFindRequest = new FlightFindRequest(lot);
 
-        printFlights.printFlightFrom(flightsFinder.findDeparture(lot.getFlightsMap(), "Warsaw"));
-        printFlights.printFlightTo(flightsFinder.findArrival(lot.getFlightsMap(), "Berlin"));
-        printFlights.printFlightThroug(flightsFinder.findFlightAnotherCity(lot.getFlightsMap(), "Warsaw", "Berlin", "Hamburg"));
+        printFlights.printFlightFrom(flightsFinder.findDeparture(flightFindRequest.flightFromRequest()));
+        printFlights.printFlightTo(flightsFinder.findArrival(flightFindRequest.flightToRequest()));
+        printFlights.printFlightThroug(flightsFinder.findFlightAnotherCity(flightFindRequest.flightThroughRequest()));
     }
 }

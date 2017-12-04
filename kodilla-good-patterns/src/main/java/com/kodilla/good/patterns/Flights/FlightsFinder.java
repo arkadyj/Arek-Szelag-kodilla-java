@@ -10,37 +10,37 @@ import java.util.stream.Collectors;
 public class FlightsFinder {
 
 
-    public FlightFromToDto findArrival(Set<Flight> flightSet, String arrivalAirport) {
+    public FlightFromToDto findArrival(FlightFindRequestDto flightFindRequestDto) {
 
-        Set<Flight> result = flightSet.stream()
-                .filter(flight -> flight.getFlightMap().getArrival().equals(arrivalAirport))
+        Set<Flight> result = flightFindRequestDto.getFlightsSet().stream()
+                .filter(flight -> flight.getFlightMap().getArrival().equals(flightFindRequestDto.getAirport()))
                 .filter((flight -> flight.getArrivalTime().isAfter(LocalDateTime.now())))
                 .collect(Collectors.toSet());
-        return new FlightFromToDto(result, arrivalAirport);
+        return new FlightFromToDto(result, flightFindRequestDto.getAirport());
     }
 
-    public FlightFromToDto findDeparture(Set<Flight> flightSet, String departureAirport) {
+    public FlightFromToDto findDeparture(FlightFindRequestDto flightFromRequestDto) {
 
-        Set<Flight> result = flightSet.stream()
-                .filter(flightMap -> flightMap.getFlightMap().getDeparture().equals(departureAirport))
+        Set<Flight> result = flightFromRequestDto.getFlightsSet().stream()
+                .filter(flightMap -> flightMap.getFlightMap().getDeparture().equals(flightFromRequestDto.getAirport()))
                 .filter(flight -> flight.getDepartureTime().isAfter(LocalDateTime.now()))
                 .collect(Collectors.toSet());
-        return new FlightFromToDto(result, departureAirport);
+        return new FlightFromToDto(result, flightFromRequestDto.getAirport());
     }
 
-    public FlightThroughDto findFlightAnotherCity(Set<Flight> flightSet, String from, String through, String to) {
+    public FlightThroughDto findFlightAnotherCity(FlightFindThroughRequestDto flightFindThroughRequestDto) {
 
         Set<Flight> finalOfSet = new HashSet<>();
         List<Set<Flight>> listToPrint = new ArrayList<>();
-        Set<Flight> setFirstPart = flightSet.stream()
-                .filter(flightMap -> flightMap.getFlightMap().equals(new FlightMap(from, through)))
+        Set<Flight> setFirstPart = flightFindThroughRequestDto.getFlightsSet().stream()
+                .filter(flightMap -> flightMap.getFlightMap().equals(new FlightMap(flightFindThroughRequestDto.getAirportFrom(), flightFindThroughRequestDto.getAirportThrough())))
                 .filter(flight -> flight.getDepartureTime().isAfter(LocalDateTime.now()))
                 .collect(Collectors.toSet());
 
         for (Flight secondFlight : setFirstPart) {
             finalOfSet.add(secondFlight);
-            Set<Flight> setSecondPart = flightSet.stream()
-                    .filter(flight -> flight.getFlightMap().equals(new FlightMap(through, to)))
+            Set<Flight> setSecondPart = flightFindThroughRequestDto.getFlightsSet().stream()
+                    .filter(flight -> flight.getFlightMap().equals(new FlightMap(flightFindThroughRequestDto.getAirportThrough(), flightFindThroughRequestDto.getAirportTo())))
                     .filter(flight -> secondFlight.getDepartureTime().isBefore(flight.getArrivalTime()))
                     .collect(Collectors.toSet());
 
@@ -51,6 +51,6 @@ public class FlightsFinder {
                 finalOfSet = new HashSet<>();
             }
         }
-        return new FlightThroughDto(listToPrint, from, to, through);
+        return new FlightThroughDto(listToPrint, flightFindThroughRequestDto.getAirportFrom(), flightFindThroughRequestDto.getAirportTo(), flightFindThroughRequestDto.getAirportThrough());
     }
 }
