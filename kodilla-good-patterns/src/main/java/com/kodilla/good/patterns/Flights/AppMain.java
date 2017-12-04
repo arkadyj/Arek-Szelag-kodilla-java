@@ -10,7 +10,9 @@ public class AppMain {
         Airlane lot = new Airlane("New Hope AirLine");
         FlightFindRequest flightFindRequest = new FlightFindRequest(lot);
 
-        printFlights.printFlightFrom(flightsFinder.findDeparture(flightFindRequest.flightFromRequest()));
+        lot.getPrintFlights().printFlightFrom(flightsFinder.findDeparture(flightFindRequest.flightFromRequest()));
+
+        //printFlights.printFlightFrom(flightsFinder.findDeparture(flightFindRequest.flightFromRequest()));
         printFlights.printFlightTo(flightsFinder.findArrival(flightFindRequest.flightToRequest()));
         printFlights.printFlightThroug(flightsFinder.findFlightAnotherCity(flightFindRequest.flightThroughRequest()));
     }

@@ -1,13 +1,15 @@
 package com.kodilla.good.patterns.Flights;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class FlightsFinder {
+
+    private FlightFindRequestDto flightFindRequestDto;
+
+    public FlightsFinder() {
+    }
 
 
     public FlightFromToDto findArrival(FlightFindRequestDto flightFindRequestDto) {
@@ -15,7 +17,7 @@ public class FlightsFinder {
         Set<Flight> result = flightFindRequestDto.getFlightsSet().stream()
                 .filter(flight -> flight.getFlightMap().getArrival().equals(flightFindRequestDto.getAirport()))
                 .filter((flight -> flight.getArrivalTime().isAfter(LocalDateTime.now())))
-                .collect(Collectors.toSet());
+                .collect(Collectors.toCollection(()-> new TreeSet<>(Comparator.comparing(Flight::getArrivalTime))));
         return new FlightFromToDto(result, flightFindRequestDto.getAirport());
     }
 
@@ -24,7 +26,7 @@ public class FlightsFinder {
         Set<Flight> result = flightFromRequestDto.getFlightsSet().stream()
                 .filter(flightMap -> flightMap.getFlightMap().getDeparture().equals(flightFromRequestDto.getAirport()))
                 .filter(flight -> flight.getDepartureTime().isAfter(LocalDateTime.now()))
-                .collect(Collectors.toSet());
+                .collect(Collectors.toCollection(()-> new TreeSet<>(Comparator.comparing(Flight::getArrivalTime))));
         return new FlightFromToDto(result, flightFromRequestDto.getAirport());
     }
 
@@ -35,14 +37,14 @@ public class FlightsFinder {
         Set<Flight> setFirstPart = flightFindThroughRequestDto.getFlightsSet().stream()
                 .filter(flightMap -> flightMap.getFlightMap().equals(new FlightMap(flightFindThroughRequestDto.getAirportFrom(), flightFindThroughRequestDto.getAirportThrough())))
                 .filter(flight -> flight.getDepartureTime().isAfter(LocalDateTime.now()))
-                .collect(Collectors.toSet());
+                .collect(Collectors.toCollection(()-> new TreeSet<>(Comparator.comparing(Flight::getArrivalTime))));
 
         for (Flight secondFlight : setFirstPart) {
             finalOfSet.add(secondFlight);
             Set<Flight> setSecondPart = flightFindThroughRequestDto.getFlightsSet().stream()
                     .filter(flight -> flight.getFlightMap().equals(new FlightMap(flightFindThroughRequestDto.getAirportThrough(), flightFindThroughRequestDto.getAirportTo())))
                     .filter(flight -> secondFlight.getDepartureTime().isBefore(flight.getArrivalTime()))
-                    .collect(Collectors.toSet());
+                    .collect(Collectors.toCollection(()-> new TreeSet<>(Comparator.comparing(Flight::getArrivalTime))));
 
             if (setFirstPart.size() > 0 && setSecondPart.size() > 0) {
 
