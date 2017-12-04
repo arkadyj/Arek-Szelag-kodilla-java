@@ -6,8 +6,6 @@ import java.util.stream.Collectors;
 
 public class FlightsFinder {
 
-    private FlightFindRequestDto flightFindRequestDto;
-
     public FlightsFinder() {
     }
 
