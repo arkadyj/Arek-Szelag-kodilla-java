@@ -4,4 +4,5 @@ include 'kodilla-rps'
 include 'kodilla-exception'
 include 'homeWork'
 include 'kodilla-good-patterns'
+include 'kodilla-spring-intro'
 

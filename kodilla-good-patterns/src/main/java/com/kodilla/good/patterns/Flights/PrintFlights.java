@@ -7,11 +7,15 @@ import java.util.stream.Collectors;
 public class PrintFlights {
 
     private DateTimeFormatter dataTimeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    private FlightsFinder flightsFinder;
+    private FlightFindRequest flightFindRequest;
+    private Airlane airlane;
 
     public PrintFlights() {
+
     }
 
-    public void printFlightFrom(FlightFromToDto flightFromToDto) {
+  public void printFlightFrom(FlightFromToDto flightFromToDto) {
         System.out.println("******************************");
         System.out.println("All flights FROM " + flightFromToDto.getAirportName());
         System.out.printf("%17s|  %15s| %15s| %20s| %20s|\n", "Flight number", "Departure", "Arrival", "ToD", "ToA");
