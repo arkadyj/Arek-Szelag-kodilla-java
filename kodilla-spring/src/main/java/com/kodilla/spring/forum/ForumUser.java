@@ -14,5 +14,4 @@ public class ForumUser {
     public String getUsername() {
         return username;
     }
-
 }

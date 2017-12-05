@@ -1,7 +1,5 @@
-package com.kodilla.spring.forum;
+package com.kodilla.spring.library;
 
-
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,20 +9,28 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class ForumUserTestSuite {
-
+public class LibraryTestSuite {
     @Test
-    public void testGetUsername() {
-
+    public void testLoadFromDb() {
         //Given
         ApplicationContext context =
                 new AnnotationConfigApplicationContext("com.kodilla.spring");
-        ForumUser forumUser = context.getBean(ForumUser.class);
-
+        Library library = context.getBean(Library.class);
         //When
-        String userName = forumUser.getUsername();
-
+        library.loadFromDb();
         //Then
-        Assert.assertEquals("John Smith",userName);
+        //do nothing
+    }
+
+    @Test
+    public void testSaveToDb() {
+        //Given
+        ApplicationContext context =
+                new AnnotationConfigApplicationContext("com.kodilla.spring");
+        Library library = context.getBean(Library.class);
+        //When
+        library.saveToDb();
+        //Then
+        //do nothing
     }
 }
