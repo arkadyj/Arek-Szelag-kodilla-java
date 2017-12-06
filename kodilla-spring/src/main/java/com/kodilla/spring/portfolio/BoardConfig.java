@@ -11,7 +11,7 @@ public class BoardConfig {
     Board board;
 
     @Bean
-    public Board getBoard(){
+    public Board getBoard() {
         return new Board(createTaskToDo(), inProgressList(), doneList());
     }
 
@@ -29,10 +29,4 @@ public class BoardConfig {
     public TaskList doneList() {
         return new TaskList();
     }
-
-
-
-
-
-
 }
