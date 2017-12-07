@@ -8,12 +8,9 @@ import org.springframework.context.annotation.Scope;
 @Configuration
 public class BoardConfig {
 
-<<<<<<< HEAD
 
-=======
->>>>>>> zad_10_3
     @Bean
-    public Board createBoard(TaskList taskList) {
+    public Board createBoard() {
         return new Board(createTask(), createTask(), createTask());
     }
 
@@ -22,6 +19,4 @@ public class BoardConfig {
     public TaskList createTask() {
         return new TaskList();
     }
-
-
 }
