@@ -6,7 +6,15 @@ import java.util.List;
 public class TaskList {
     private List<String> tasks;
 
-    public TaskList(){
+    public TaskList() {
         tasks = new ArrayList<>();
+    }
+
+    public List<String> getTasks() {
+        return tasks;
+    }
+
+    public void addToTask(String text) {
+        tasks.add(text);
     }
 }
