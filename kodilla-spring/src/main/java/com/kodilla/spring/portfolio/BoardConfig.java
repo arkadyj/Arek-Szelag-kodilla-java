@@ -3,30 +3,21 @@ package com.kodilla.spring.portfolio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 
 @Configuration
 public class BoardConfig {
 
-    @Autowired
-    Board board;
-
     @Bean
-    public Board getBoard() {
-        return new Board(createTaskToDo(), inProgressList(), doneList());
+    public Board createBoard(TaskList taskList) {
+        return new Board(createTask(), createTask(), createTask());
     }
 
     @Bean
-    public TaskList createTaskToDo() {
+    @Scope("prototype")
+    public TaskList createTask() {
         return new TaskList();
     }
 
-    @Bean
-    public TaskList inProgressList() {
-        return new TaskList();
-    }
 
-    @Bean
-    public TaskList doneList() {
-        return new TaskList();
-    }
 }
