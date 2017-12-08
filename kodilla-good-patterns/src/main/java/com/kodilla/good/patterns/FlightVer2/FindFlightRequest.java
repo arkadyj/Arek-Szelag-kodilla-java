@@ -1,23 +1,23 @@
 package com.kodilla.good.patterns.FlightVer2;
 
-import java.util.Set;
-
 public class FindFlightRequest {
 
-    private Airlane airlane;
+    private AirlaneData airlaneData;
     private String findDeparture;
     private String findArrival;
     private String findThough;
+    private String typeOfInquiry;
 
-    public FindFlightRequest(Airlane airlane, String findDeparture, String findArrival, String findThough) {
-        this.airlane = airlane;
+    public FindFlightRequest(AirlaneData airlane, String findDeparture, String findArrival, String findThough, String typeOfInquiry) {
+        this.airlaneData = airlane;
         this.findDeparture = findDeparture;
         this.findArrival = findArrival;
         this.findThough = findThough;
+        this.typeOfInquiry = typeOfInquiry;
     }
 
-    public Airlane getAirlane() {
-        return airlane;
+    public AirlaneData getAirlaneData() {
+        return airlaneData;
     }
 
     public String getFindDeparture() {
@@ -32,10 +32,14 @@ public class FindFlightRequest {
         return findThough;
     }
 
+    public String getTypeOfInquiry() {
+        return typeOfInquiry;
+    }
+
     @Override
     public String toString() {
         return "FindFlightRequest{" +
-                "airlane=" + airlane +
+                "airlaneData=" + airlaneData +
                 ", findDeparture='" + findDeparture + '\'' +
                 ", findArrival='" + findArrival + '\'' +
                 ", findThough='" + findThough + '\'' +

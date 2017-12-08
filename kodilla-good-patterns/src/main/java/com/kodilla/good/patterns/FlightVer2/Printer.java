@@ -1,6 +1,10 @@
 package com.kodilla.good.patterns.FlightVer2;
 
 import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 public class Printer implements PrintService {
 
@@ -8,7 +12,7 @@ public class Printer implements PrintService {
 
     public void printFlightDeparture(ToPrintFlightsDto toPrintFlightsDto) {
         System.out.println("******************************");
-        System.out.println("All flights FROM " + toPrintFlightsDto.getAirportName());
+        System.out.println("All flights FROM " + toPrintFlightsDto.getAirportNameDeparture());
         System.out.printf("%17s|  %15s| %15s| %20s| %20s|\n", "Flight number", "Departure", "Arrival", "ToD", "ToA");
 
         for (Flight flight : toPrintFlightsDto.getTemporarySet()) {
@@ -21,7 +25,7 @@ public class Printer implements PrintService {
 
     public void printFlightArrival(ToPrintFlightsDto toPrintFlightsDto) {
         System.out.println("******************************");
-        System.out.println("All flights FROM " + toPrintFlightsDto.getAirportName());
+        System.out.println("All flights TO " + toPrintFlightsDto.getAirportNameDeparture());
         System.out.printf("%17s|  %15s| %15s| %20s| %20s|\n", "Flight number", "Departure", "Arrival", "ToD", "ToA");
 
         for (Flight flight : toPrintFlightsDto.getTemporarySet()) {
@@ -32,5 +36,23 @@ public class Printer implements PrintService {
 
     }
 
+    public void printFlightThrough(ToPrintFlightsDto toPrintFlightsDto) {
+        System.out.println("******************************");
+        System.out.println("All flights FROM " + toPrintFlightsDto.getAirportNameDeparture() +
+                " THROUGH " + toPrintFlightsDto.getAirportNameThrough() +
+                " TO " + toPrintFlightsDto.getAirportNameArrival());
+        System.out.printf("%17s|  %15s| %15s| %20s| %20s|\n", "Flight number", "Departure", "Arrival", "ToD", "ToA");
 
+        for (Set<Flight> set : toPrintFlightsDto.getListOfFlightSet()) {
+            Set<Flight> testSet = set.stream()
+                    .collect(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(Flight::getArrivalTime))));
+
+            System.out.println("###### Possible connection: ");
+            for (Flight flight : testSet) {
+                System.out.printf("%17s|  %15s| %15s| %20s| %20s| \n", flight.getFlightNumber(), flight.getDepartureAirport(),
+                        flight.getArrivalAirport(), flight.getDepartureTime().format(dataTimeFormat),
+                        flight.getArrivalTime().format(dataTimeFormat));
+            }
+        }
+    }
 }

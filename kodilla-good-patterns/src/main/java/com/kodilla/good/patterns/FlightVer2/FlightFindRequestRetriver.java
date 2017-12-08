@@ -1,19 +1,21 @@
 package com.kodilla.good.patterns.FlightVer2;
 
-    public class FlightFindRequestRetriver {
+public class FlightFindRequestRetriver {
 
-        Airlane airlane = new Airlane("LOT");
+    AirlaneData airlaneData = new AirlaneData("LOT");
 
-        public FindFlightRequest retrieveDeparture() {
+    public FindFlightRequest retrieveDeparture() {
 
+        return new FindFlightRequest(airlaneData, "Warsaw", null, null, "FROM");
+    }
 
+    public FindFlightRequest retrieveArrival() {
 
-            return new FindFlightRequest(airlane,"Warsaw",null,null);
-        }
+        return new FindFlightRequest(airlaneData, null, "Berlin", null, "TO");
+    }
 
-        public FindFlightRequest retrieveArrival() {
+    public FindFlightRequest retrieveThrough() {
 
-
-            return new FindFlightRequest(airlane,null,"Berlin",null);
-        }
+        return new FindFlightRequest(airlaneData, "Warsaw", "Hamburg", "Berlin", "THROUGH");
+    }
 }

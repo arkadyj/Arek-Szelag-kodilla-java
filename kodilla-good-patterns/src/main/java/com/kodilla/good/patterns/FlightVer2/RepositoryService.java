@@ -4,5 +4,5 @@ import java.util.Set;
 
 public interface RepositoryService {
 
-    Set<Flight> loadAirlaneData(Airlane airlane);
+    Set<Flight> loadAirlaneData(AirlaneData airlaneData);
 }
