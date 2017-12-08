@@ -8,8 +8,8 @@ import org.springframework.context.annotation.Scope;
 public class BoardConfig {
 
     @Bean
-    public Board createBoard() {
-        return new Board(createTask(), createTask(), createTask());
+    public Board createBoard(TaskList toDoList, TaskList inProgressList, TaskList doneList) {
+        return new Board(toDoList, inProgressList, doneList);
     }
 
     @Bean
