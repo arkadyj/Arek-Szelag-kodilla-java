@@ -47,12 +47,20 @@ public class Airlane {
                 "Budapest", "Berlin"));
 
         flightMap.add(new Flight("AC999",
-                LocalDateTime.of(2017, 12, 7, 10, 10),
-                LocalDateTime.of(2017, 12, 7, 11, 50),
+                LocalDateTime.of(2017, 12, 10, 10, 10),
+                LocalDateTime.of(2017, 12, 10, 11, 50),
                 "Warsaw", "Berlin"));
     }
 
     public Set<Flight> getFlightMap() {
         return flightMap;
+    }
+
+    @Override
+    public String toString() {
+        return "Airlane{" +
+                "airlaneName='" + airlaneName + '\'' +
+                ", flightMap=" + flightMap +
+                '}';
     }
 }

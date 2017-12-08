@@ -64,4 +64,15 @@ public class Flight {
         result = 31 * result + arrivalAirport.hashCode();
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Flight{" +
+                "flightNumber='" + flightNumber + '\'' +
+                ", departureTime=" + departureTime.format(dataTimeFormat) +
+                ", arrivalTime=" + arrivalTime.format(dataTimeFormat) +
+                ", departureAirport='" + departureAirport + '\'' +
+                ", arrivalAirport='" + arrivalAirport + '\'' +
+                '}' + "\n";
+    }
 }

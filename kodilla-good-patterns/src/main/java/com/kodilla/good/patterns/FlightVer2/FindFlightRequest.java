@@ -31,4 +31,14 @@ public class FindFlightRequest {
     public String getFindThough() {
         return findThough;
     }
+
+    @Override
+    public String toString() {
+        return "FindFlightRequest{" +
+                "airlane=" + airlane +
+                ", findDeparture='" + findDeparture + '\'' +
+                ", findArrival='" + findArrival + '\'' +
+                ", findThough='" + findThough + '\'' +
+                '}';
+    }
 }

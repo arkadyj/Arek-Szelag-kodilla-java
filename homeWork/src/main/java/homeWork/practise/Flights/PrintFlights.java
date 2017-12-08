@@ -17,14 +17,14 @@ public class PrintFlights {
 
   public void printFlightFrom(FlightFromToDto flightFromToDto) {
         System.out.println("******************************");
-        System.out.println("All flights FROM " + flightFromToDto.getAirportName());
-        System.out.printf("%17s|  %15s| %15s| %20s| %20s|\n", "Flight number", "Departure", "Arrival", "ToD", "ToA");
+      System.out.println("All flights FROM " + flightFromToDto.getAirportName());
+      System.out.printf("%17s|  %15s| %15s| %20s| %20s|\n", "Flight number", "Departure", "Arrival", "ToD", "ToA");
 
-        for (Flight flight : flightFromToDto.getTemporarySet()) {
-            System.out.printf("%17s|  %15s| %15s| %20s| %20s| \n", flight.getFlightNumber(), flight.getFlightMap().getDeparture(),
-                    flight.getFlightMap().getArrival(), flight.getDepartureTime().format(dataTimeFormat),
-                    flight.getArrivalTime().format(dataTimeFormat));
-        }
+      for (Flight flight : flightFromToDto.getTemporarySet()) {
+          System.out.printf("%17s|  %15s| %15s| %20s| %20s| \n", flight.getFlightNumber(), flight.getFlightMap().getDeparture(),
+                  flight.getFlightMap().getArrival(), flight.getDepartureTime().format(dataTimeFormat),
+                  flight.getArrivalTime().format(dataTimeFormat));
+      }
     }
 
     public void printFlightTo(FlightFromToDto flightFromToDto) {
