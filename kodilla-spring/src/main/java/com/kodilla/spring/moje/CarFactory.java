@@ -6,4 +6,8 @@ public class CarFactory {
     public CarFactory(Car car) {
         this.car = car;
     }
+
+    public void carInfo () {
+        System.out.println(car.getModel() + " " + car.getDoors());
+    }
 }

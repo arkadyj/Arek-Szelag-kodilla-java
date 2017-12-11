@@ -7,13 +7,14 @@ import org.springframework.context.annotation.Configuration;
 public class CarConfig {
 
 
+
     @Bean
-    public CarFactory createRenault() {
-        return new CarFactory(createCar());
+    public CarFactory createRenault(Car car) {
+        return new CarFactory(car);
     }
 
     @Bean
     public Car createCar() {
-        return new Car("CarFactory",5);
+        return new Car("Renault",5);
     }
 }

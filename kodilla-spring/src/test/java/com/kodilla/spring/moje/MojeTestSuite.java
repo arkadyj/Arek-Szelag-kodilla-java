@@ -16,8 +16,10 @@ public class MojeTestSuite {
         //Given
         ApplicationContext context =
                 new AnnotationConfigApplicationContext(CarConfig.class);
-        CarFactory carFactory = (CarFactory)context.getBean("createRenault");
+        CarFactory carFactory = context.getBean(CarFactory.class);
         //When
+
+        carFactory.carInfo();
 
 
         //Then

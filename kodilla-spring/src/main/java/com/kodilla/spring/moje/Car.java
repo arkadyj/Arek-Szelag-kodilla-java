@@ -16,4 +16,12 @@ public class Car {
     public void makeCar() {
         System.out.println("I'm a car");
     }
+
+    public String getModel() {
+        return model;
+    }
+
+    public int getDoors() {
+        return doors;
+    }
 }
