@@ -30,7 +30,7 @@ public class DrivingTask implements Task {
     }
 
     @Override
-    public boolean isTaskExecuted() {
+    public Boolean isTaskExecuted() {
         return true;
     }
 }
