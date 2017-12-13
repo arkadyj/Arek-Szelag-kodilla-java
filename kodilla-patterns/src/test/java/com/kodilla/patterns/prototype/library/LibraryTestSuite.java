@@ -12,9 +12,8 @@ public class LibraryTestSuite {
 
         //Given
         Library library = new Library("Old library");
-        Book book = new Book("Cylinder van Troffa", "Janusz Zajdel", LocalDate.of(1980, 11, 20));
         library.getBooks().add(new Book("Limes inferior", "Janusz Zajdel", LocalDate.of(1982, 5, 13)));
-        library.getBooks().add(book);
+        library.getBooks().add(new Book("Cylinder van Troffa", "Janusz Zajdel", LocalDate.of(1980, 11, 20)));
         library.getBooks().add(new Book("Foundation", "Issac Asimov", LocalDate.of(1951, 3, 9)));
 
         //When
@@ -34,8 +33,9 @@ public class LibraryTestSuite {
             System.out.println(e);
         }
 
-        library.getBooks().remove(book);
+        library.getBooks().remove(new Book("Cylinder van Troffa", "Janusz Zajdel", LocalDate.of(1980, 11, 20)));
 
+        System.out.println(library);
         System.out.println(clonedShallowLibrary);
         System.out.println(clonedDeepLibrary);
 

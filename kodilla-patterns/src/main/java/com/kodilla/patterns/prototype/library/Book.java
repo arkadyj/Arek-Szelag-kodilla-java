@@ -32,4 +32,24 @@ public final class Book {
                 ", publicationDate=" + publicationDate +
                 "\n";
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Book book = (Book) o;
+
+        if (!title.equals(book.title)) return false;
+        if (!author.equals(book.author)) return false;
+        return publicationDate.equals(book.publicationDate);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = title.hashCode();
+        result = 31 * result + author.hashCode();
+        result = 31 * result + publicationDate.hashCode();
+        return result;
+    }
 }
