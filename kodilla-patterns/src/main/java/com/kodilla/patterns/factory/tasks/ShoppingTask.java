@@ -29,4 +29,9 @@ public class ShoppingTask implements Task {
     public void executeTask() {
         System.out.println("Executing shopping task");
     }
+
+    @Override
+    public boolean isTaskExecuted() {
+        return true;
+    }
 }

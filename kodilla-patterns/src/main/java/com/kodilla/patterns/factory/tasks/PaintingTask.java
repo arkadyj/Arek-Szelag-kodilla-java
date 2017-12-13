@@ -28,4 +28,9 @@ public class PaintingTask implements Task {
     public void executeTask() {
         System.out.println("Executing painting task");
     }
+
+    @Override
+    public boolean isTaskExecuted() {
+        return true;
+    }
 }

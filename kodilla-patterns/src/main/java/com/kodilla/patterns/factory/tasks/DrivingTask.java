@@ -28,4 +28,9 @@ public class DrivingTask implements Task {
     public void executeTask() {
         System.out.println("Executing driving task");
     }
+
+    @Override
+    public boolean isTaskExecuted() {
+        return true;
+    }
 }
