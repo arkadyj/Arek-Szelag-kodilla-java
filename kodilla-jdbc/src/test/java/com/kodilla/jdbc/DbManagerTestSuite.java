@@ -63,10 +63,11 @@ public class DbManagerTestSuite {
         ResultSet rs = statement.executeQuery(sqlQuery);
 
         //Then
+
+        System.out.printf("%15s | %30s| \n","Post number", "Username ");
         int counter = 0;
         while (rs.next()) {
-            System.out.println(rs.getInt("POST_NUMBER") + ", " +
-                    rs.getString("USER"));
+            System.out.printf("%15s | %30s| \n",rs.getInt("POST_NUMBER"), rs.getString("USER"));
             counter++;
         }
         rs.close();
