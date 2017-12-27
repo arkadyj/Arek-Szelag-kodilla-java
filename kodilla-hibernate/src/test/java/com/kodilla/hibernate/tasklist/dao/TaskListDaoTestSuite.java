@@ -25,7 +25,7 @@ public class TaskListDaoTestSuite {
 
         //When
         taskListDao.save(taskList);
-        List<TaskList> resultList =gi taskListDao.findByListName("In progress");
+        List<TaskList> resultList = taskListDao.findByListName("In progress");
         String description = resultList.get(0).getDescription();
 
         //Then
