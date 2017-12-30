@@ -5,6 +5,12 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+@NamedNativeQuery(
+        name = "Company.getCompany",
+        query = "SELECT * FROM Companies WHERE UPPER(SUBSTRING(company_name,1,3)) = UPPER(:NAME)",
+        resultClass = Company.class
+)
+
 @Entity
 @Table(name = "COMPANIES")
 public class Company {
