@@ -111,4 +111,25 @@ public class CompanyDaoTestSuite {
         //Then
         Assert.assertEquals(1, retrievedCompany.size());
     }
+
+    @Test
+    public void testAnotherSelect() {
+
+        companyDao.save(softwareMachine);
+        int softwareMachineId = softwareMachine.getId();
+        companyDao.save(dataMaesters);
+        int dataMaestersId = dataMaesters.getId();
+        companyDao.save(greyMatter);
+        int greyMatterId = greyMatter.getId();
+
+        List<Company> retrievedCompany = companyDao.findCompanyStartWith("%M%");
+
+        System.out.println("test");
+        System.out.println(retrievedCompany.size());
+
+        for(Company company:retrievedCompany){
+            System.out.println(company);
+        }
+
+    }
 }
