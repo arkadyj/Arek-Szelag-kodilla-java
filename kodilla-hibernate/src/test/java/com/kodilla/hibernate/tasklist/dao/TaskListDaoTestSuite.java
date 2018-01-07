@@ -69,7 +69,7 @@ public class TaskListDaoTestSuite {
         taskListDao.delete(id);
     }
 
-    @Test
+    /*@Test
     public void testNamedQueries() {
         //Given
         Task task1 = new Task("Test: Study Hibernate", 3);
@@ -117,5 +117,5 @@ public class TaskListDaoTestSuite {
             //CleanUp
             taskListDao.delete(id);
         }
-    }
+    }*/
 }
