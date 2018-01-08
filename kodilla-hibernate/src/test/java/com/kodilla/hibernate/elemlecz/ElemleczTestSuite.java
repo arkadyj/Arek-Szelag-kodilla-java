@@ -15,38 +15,33 @@ import java.time.LocalDateTime;
 @SpringBootTest
 public class ElemleczTestSuite {
 
-    @Autowired
-    private PobytDao pobytDao;
+    //@Autowired
+    //private PobytDao pobytDao;
     @Autowired
     private JosDao josDao;
-    @Autowired
-    private WykEleczDao wykEleczDao;
+    //@Autowired
+    //private WykEleczDao wykEleczDao;
 
     @Test
     public void testPobyt() {
 
         Jos jos1 = new Jos("Poradnia Ogólna");
+        Doctor doctor1 = new Doctor("Super Doctor");
+        Doctor doctor2 = new Doctor("Chirurg");
         Pobyt pob1 = new Pobyt("2018-01-05 12:10");
-        //Pobyt pob2 = new Pobyt("2018-01-05 12:30");
-        WykElecz wykElecz = new WykElecz();
+        Pobyt pob2 = new Pobyt("2018-01-05 12:30");
 
-        wykElecz.getPobytList().add(pob1);
 
-        //josDao.save(jos1);
 
-        //jos1.getPobytList().add(pob1);
-        //jos1.getPobytList().add(pob2);
+        pob1.setDoctor(doctor1);
+        pob2.setDoctor(doctor2);
+        jos1.getPobytList().add(pob1);
+        jos1.getPobytList().add(pob2);
 
-        pob1.setJos(jos1);
-        //pob2.setJos(jos1);
+        josDao.save(jos1);
 
-        //pobytDao.save(pob1);
-        //pobytDao.save(pob2);
 
-        //pobytDao.delete(pob1);
-        //pobytDao.delete(pob2);
 
-        wykEleczDao.save(wykElecz);
 
     }
 
