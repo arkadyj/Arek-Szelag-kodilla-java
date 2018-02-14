@@ -46,6 +46,8 @@ public class CompanyDaoTestSuite {
         stephanieClarckson.getCompanies().add(dataMaesters);
         lindaKovalsky.getCompanies().add(dataMaesters);
         lindaKovalsky.getCompanies().add(greyMatter);
+
+
     }
 
     @After

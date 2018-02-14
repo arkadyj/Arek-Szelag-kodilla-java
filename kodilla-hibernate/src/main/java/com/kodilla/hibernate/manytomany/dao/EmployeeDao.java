@@ -11,4 +11,7 @@ public interface EmployeeDao extends CrudRepository<Employee, Integer> {
 
     @Query
     List<Employee> retrieveEmployeeByLastname(@Param("LASTNAME") String lastname);
+
+    @Query(value = "Select * from employees where upper(lastname) LIKE upper(:PARAM)",nativeQuery = true )
+    List<Employee> findEmployeesByName(@Param("PARAM") String name);
 }
