@@ -3,6 +3,7 @@ package com.kodilla.hibernate.manytomany.facade;
 import com.kodilla.hibernate.manytomany.Company;
 import com.kodilla.hibernate.manytomany.Employee;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -57,21 +58,30 @@ public class FacadeTestSuite {
             companyFacade.companyDao.delete(dataMaesters);
             companyFacade.companyDao.delete(greyMatter);
         } catch (Exception e) {
-            System.out.println("Error: " +e);
+            System.out.println("Error: " + e);
         }
 
     }
 
     @Test
-    public void testGetCompany() {
+    public void testGetCompanyByName() {
+        //Given
+
+        //When
         int companyCount = companyFacade.getCompanyByName("%S%").size();
-        System.out.println(companyCount);
+
+        //Then
+        Assert.assertEquals(2, companyCount);
     }
 
     @Test
-    public void testGetEmployee() {
-        int employeeCount = companyFacade.getEmployeesByName("%h").size();
-        System.out.println(employeeCount);
-    }
+    public void testGetEmployeeByLastname() {
+        //Given
 
+        //When
+        int employeeCount = companyFacade.getEmployeesByName("%h").size();
+
+        //Then
+        Assert.assertEquals(2, employeeCount);
+    }
 }

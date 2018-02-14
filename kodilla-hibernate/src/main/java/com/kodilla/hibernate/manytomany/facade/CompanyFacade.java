@@ -18,16 +18,10 @@ public class CompanyFacade {
     EmployeeDao employeeDao;
 
     public List<Company> getCompanyByName(String name) {
-        return companyDao.findCompanyStartWith(name);
+        return companyDao.findCompanyByName(name);
     }
 
     public List<Employee> getEmployeesByName(String name) {
         return employeeDao.findEmployeesByName(name);
     }
-
-
-
-
-
-
 }

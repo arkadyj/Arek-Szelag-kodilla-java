@@ -124,7 +124,7 @@ public class CompanyDaoTestSuite {
         companyDao.save(greyMatter);
         int greyMatterId = greyMatter.getId();
 
-        List<Company> retrievedCompany = companyDao.findCompanyStartWith("%M%");
+        List<Company> retrievedCompany = companyDao.findCompanyByName("%M%");
 
         System.out.println("test");
         System.out.println(retrievedCompany.size());
