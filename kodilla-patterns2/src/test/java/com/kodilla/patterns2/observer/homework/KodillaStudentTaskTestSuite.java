@@ -30,10 +30,13 @@ public class KodillaStudentTaskTestSuite {
         jwright.getQueue().addTask("Task 7.4 Stream flatMap() and reduce()");
         rkowczew.getQueue().addTask("Task 6.3 Junit first test");
 
+        String taskCheck1 = lwoods.getQueue().getTaskQueue().getLast();
+        String taskCheck2 = rkowczew.getQueue().getTaskQueue().getLast();
+
         //Then
         Assert.assertEquals(2, rkowczew.getQueue().getTaskQueue().size());
         Assert.assertEquals(1, lwoods.getQueue().getTaskQueue().size());
-        Assert.assertEquals("Task 3.2 Queue and ArrayDeque", lwoods.getQueue().getTaskQueue().getLast());
-        Assert.assertEquals("Task 6.3 Junit first test", rkowczew.getQueue().getTaskQueue().getLast());
+        Assert.assertEquals("Task 3.2 Queue and ArrayDeque", taskCheck1);
+        Assert.assertEquals("Task 6.3 Junit first test", taskCheck2);
     }
 }
