@@ -4,13 +4,11 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TaskQueue implements Observable {
+public class Queue implements Observable {
     private List<Observer> observers;
     private ArrayDeque<String> taskQueue;
 
-
-
-    public TaskQueue() {
+    public Queue() {
         observers = new ArrayList<>();
         taskQueue = new ArrayDeque<>();
     }
@@ -23,20 +21,25 @@ public class TaskQueue implements Observable {
         return taskQueue;
     }
 
-    public void addTask(String task){
+    public void addTask(String task) {
         taskQueue.add(task);
         notifyObservers();
     }
 
     @Override
-    public void registerObserver(Observer observer){
+    public void registerObserver(Observer observer) {
         observers.add(observer);
     }
+
     @Override
-    public void notifyObservers(){
-        for (Observer observer:observers) {
+    public void notifyObservers() {
+        for (Observer observer : observers) {
             observer.update(this);
         }
+    }
 
+    @Override
+    public void removeObserver(Observer observer) {
+        observers.remove(observer);
     }
 }

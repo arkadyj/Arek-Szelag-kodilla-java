@@ -8,7 +8,7 @@ public class KodillaMentor implements Observer {
     }
 
     @Override
-    public void update (TaskQueue taskQueue) {
-        System.out.println(" task: " + taskQueue.getTaskQueue().getLast());
+    public void update(Queue queue) {
+        System.out.println(username + ": task to check - " + queue.getTaskQueue().getLast());
     }
 }

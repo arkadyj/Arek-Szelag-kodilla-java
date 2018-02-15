@@ -1,13 +1,17 @@
 package com.kodilla.patterns2.observer.homework;
 
-public class KodillaStudent extends TaskQueue {
+public class KodillaStudent {
     private String username;
-    //private TaskQueue taskQueue;
+    private Queue queue;
 
     public KodillaStudent(String username) {
-        super();
+        queue = new Queue();
         this.username=username;
 
+    }
+
+    public Queue getQueue() {
+        return queue;
     }
 
     public String getUsername() {

@@ -14,6 +14,6 @@ public class FasadeWacher {
 
     @Before("execution(* com.kodilla.patterns2.facade.api.OrderFacade.processOrder(..))")
     public void logEvent() {
-        LOGGER.info("Execution method processOrder");
+        LOGGER.info("***Execution method processOrder***");
     }
 }
