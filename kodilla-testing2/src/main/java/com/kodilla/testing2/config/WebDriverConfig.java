@@ -9,8 +9,11 @@ public class WebDriverConfig {
     public final static String FIREFOX = "FIREFOX_DRIVER";
     public final static String CHROME = "CHROME_DRIVER";
     public static WebDriver getDriver(final String driver) {
-        System.setProperty("webdriver.gecko.driver","e:\\Moje\\programowanie\\Selenium-drivers\\Firefox\\geckodriver.exe");
-        System.setProperty("webdriver.chrome.driver","e:\\Moje\\programowanie\\Selenium-drivers\\Chrome\\chromedriver.exe");
+       /* System.setProperty("webdriver.gecko.driver","e:\\Moje\\programowanie\\Selenium-drivers\\Firefox\\geckodriver.exe");
+        System.setProperty("webdriver.chrome.driver","e:\\Moje\\programowanie\\Selenium-drivers\\Chrome\\chromedriver.exe");*/
+
+        System.setProperty("webdriver.gecko.driver","d:\\programowanie\\Selenium-drivers\\Firefox\\geckodriver.exe");
+        System.setProperty("webdriver.chrome.driver","d:\\programowanie\\Selenium-drivers\\Chrome\\chromedriver.exe");
 
         if(driver.equals(FIREFOX)) {
             return new FirefoxDriver();
