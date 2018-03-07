@@ -27,6 +27,6 @@ public class FacebookTestingApp {
 
         WebElement selectComboYear = driver.findElement(By.xpath(XPATH_SELECT_YEAR));
         Select selectBoardYear = new Select(selectComboYear);
-        selectBoardYear.selectByIndex(19);
+        selectBoardYear.selectByValue("2000");
     }
 }
